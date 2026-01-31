@@ -1,6 +1,7 @@
 using System;
 using Runtime;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class DamageController : MonoBehaviour
 {
@@ -16,16 +17,15 @@ public class DamageController : MonoBehaviour
 
         if (mCurHealth <= 0)
         {
+            MaskController mask = gameObject.GetComponent<MaskController>();
             Agent agent = gameObject.GetComponent<Agent>();
             
             //Play deathsound
             SoundFXManager.instance.PlaySoundFXClip(deathSound, transform, 1f);
 
-            if(agent != null)
+            if(agent.IsPossessed)
             {
-                agent.StopPossess(null); // this should likely be in the mask controller
-
-                // TODO: toggle death state for possession
+                GameManager.Instance.RestartLevel();
             }
 
             Destroy(gameObject); // remove this when death state is setup

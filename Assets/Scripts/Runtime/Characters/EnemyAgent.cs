@@ -9,7 +9,7 @@ namespace Runtime
 
         private void UpdateTarget()
         {
-            Agent potentialTarget = GameManager._gameManager.possessedAgent;
+            Agent potentialTarget = GameManager.Instance.possessedAgent;
 
             if(potentialTarget!= null)
             {
@@ -50,6 +50,8 @@ namespace Runtime
 
         void FixedUpdate()
         {
+            if(IsPossessed) return;
+            
             UpdateTarget();
 
             if(UpdateRotation())
