@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1544434164589130616}
   - component: {fileID: 2451962979203638042}
   - component: {fileID: 8690633023818705260}
-  m_Layer: 7
+  m_Layer: 6
   m_Name: Mask
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -213,7 +213,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1846837025328135697}
   - component: {fileID: 5671144248842918057}
-  m_Layer: 7
+  m_Layer: 6
   m_Name: Forward Arrow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -304,7 +304,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8560698485154466026}
   - component: {fileID: 2100295634809072057}
-  m_Layer: 7
+  m_Layer: 6
   m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -394,7 +394,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8378144966088712118}
-  m_Layer: 7
+  m_Layer: 6
   m_Name: Visuals
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -429,7 +429,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7317899964374921004}
   - component: {fileID: 4495168741466820700}
-  m_Layer: 7
+  m_Layer: 6
   m_Name: Locked Inputs Icon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
