@@ -100,6 +100,8 @@ namespace Runtime
 			{
 				UnlockInputs();
 			}
+			
+			CheckForStoppedThrow();
 		}
 
 		private void FixedUpdate()
@@ -188,6 +190,26 @@ namespace Runtime
 			_currentDeceleration = initialSpeed / _throwDuration;
 
 			_rigidbody2D.linearVelocity = _throwDirection * initialSpeed;
+			
+			ExitRecoveryState();
+		}
+
+		private void CheckForStoppedThrow()
+		{
+			if (_currentPossessedTarget != null)
+			{
+				return;
+			}
+			
+			if (_rigidbody2D.linearVelocity.magnitude < 0.1)
+			{
+				EnterRecoveryState();
+
+				if (InRecoveryTooLong())
+				{
+					Debug.Log("LONG RECOVERY");
+				}
+			}
 		}
 
 		private void RefreshThrows()
@@ -230,6 +252,8 @@ namespace Runtime
 			_parentConstraint.constraintActive = true;
 
 			_onPossessionBegin?.Invoke();
+			
+			ExitRecoveryState();
 
 			RefreshThrows();
 
@@ -279,19 +303,28 @@ namespace Runtime
 				_rigidbody2D.linearVelocity = Vector2.zero;
 		}
 
+		private bool _isInRecovery = false;
 		private void EnterRecoveryState()
 		{
-			_recoveryEnterTime = Time.time;
+			if (!_isInRecovery)
+			{
+				_recoveryEnterTime =  Time.time;
+				_isInRecovery = true;
+			}
 		}
 
 		private void ExitRecoveryState()
 		{
+			if (!_isInRecovery)
+				return;
+			
+			_isInRecovery = false;
 			_recoveryEnterTime = -1f;
 		}
 
 		private bool InRecoveryTooLong()
 		{
-			return _recoveryEnterTime != -1.0f && Time.time - _recoveryEnterTime >= _maxRecoveryTime;
+			return _isInRecovery && Time.time - _recoveryEnterTime >= _maxRecoveryTime;
 		}
 
 		#endregion
