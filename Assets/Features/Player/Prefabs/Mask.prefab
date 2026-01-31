@@ -54,7 +54,8 @@ MonoBehaviour:
   _spawnDistanceFromTarget: 2
   _possessStunDuration: 1.5
   _maxThrowAttempts: 2
-  _throwStrength: 10
+  _throwDistance: 8
+  _throwDuration: 0.6
   _maxRecoveryTime: 2
   _onPossessionBegin:
     m_PersistentCalls:
@@ -128,8 +129,8 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDamping: 1
+  m_Mass: 0.1
+  m_LinearDamping: 0
   m_AngularDamping: 0.1
   m_GravityScale: 1
   m_Material: {fileID: 0}

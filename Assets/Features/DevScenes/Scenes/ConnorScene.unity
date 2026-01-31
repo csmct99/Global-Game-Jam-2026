@@ -132,14 +132,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1544434164589130616, guid: c9fe5715e568d5a40b51cb2934e35cac, type: 3}
-      propertyPath: m_Mass
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1544434164589130616, guid: c9fe5715e568d5a40b51cb2934e35cac, type: 3}
-      propertyPath: m_LinearDamping
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 1914248890047212519, guid: c9fe5715e568d5a40b51cb2934e35cac, type: 3}
       propertyPath: m_Name
       value: Mask
@@ -280,6 +272,7 @@ MonoBehaviour:
   _moveSpeed: 5
   _rotationSpeed: 720
   _rigidbody: {fileID: 109235626}
+  mPerceptionDistance: 0
 --- !u!4 &109235629 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7437325486156936494, guid: bed8dd24e5dd60c49b499be4b135d003, type: 3}
@@ -947,6 +940,7 @@ MonoBehaviour:
   _moveSpeed: 5
   _rotationSpeed: 720
   _rigidbody: {fileID: 926580472}
+  mPerceptionDistance: 0
 --- !u!4 &926580475 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7437325486156936494, guid: bed8dd24e5dd60c49b499be4b135d003, type: 3}
@@ -1346,6 +1340,7 @@ MonoBehaviour:
   _moveSpeed: 5
   _rotationSpeed: 720
   _rigidbody: {fileID: 1614522983}
+  mPerceptionDistance: 0
 --- !u!4 &1614522986 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7437325486156936494, guid: bed8dd24e5dd60c49b499be4b135d003, type: 3}
@@ -1499,6 +1494,7 @@ MonoBehaviour:
   _moveSpeed: 5
   _rotationSpeed: 720
   _rigidbody: {fileID: 1698298188}
+  mPerceptionDistance: 0
 --- !u!4 &1698298191 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7437325486156936494, guid: bed8dd24e5dd60c49b499be4b135d003, type: 3}
@@ -1762,6 +1758,7 @@ MonoBehaviour:
   _moveSpeed: 5
   _rotationSpeed: 720
   _rigidbody: {fileID: 2115340429}
+  mPerceptionDistance: 0
 --- !u!4 &2115340432 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7437325486156936494, guid: bed8dd24e5dd60c49b499be4b135d003, type: 3}
