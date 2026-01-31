@@ -351,7 +351,7 @@ namespace Runtime
 
 			_isInRecovery = false;
 			_recoveryEnterTime = -1f;
-			
+
 			ResetRecoveryFeedback();
 		}
 
