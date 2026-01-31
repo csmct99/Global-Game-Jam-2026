@@ -64,8 +64,94 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9150790901833434557, guid: bed8dd24e5dd60c49b499be4b135d003, type: 3}
+      propertyPath: _weapon
+      value: 
+      objectReference: {fileID: 9052773357094208361}
+    m_RemovedComponents: []
+    m_RemovedGameObjects:
+    - {fileID: 8768566980699348007, guid: bed8dd24e5dd60c49b499be4b135d003, type: 3}
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 7437325486156936494, guid: bed8dd24e5dd60c49b499be4b135d003, type: 3}
+      insertIndex: 0
+      addedObject: {fileID: 6317198667062723398}
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: bed8dd24e5dd60c49b499be4b135d003, type: 3}
+--- !u!4 &7518148969958003346 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7437325486156936494, guid: bed8dd24e5dd60c49b499be4b135d003, type: 3}
+  m_PrefabInstance: {fileID: 1108840467527051196}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &7776702360934416336
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 7518148969958003346}
+    m_Modifications:
+    - target: {fileID: 1655522961370302748, guid: e7d85eaa1940344228201e83db279bc7, type: 3}
+      propertyPath: m_Name
+      value: Shotgun
+      objectReference: {fileID: 0}
+    - target: {fileID: 4343536227391618198, guid: e7d85eaa1940344228201e83db279bc7, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.39
+      objectReference: {fileID: 0}
+    - target: {fileID: 4343536227391618198, guid: e7d85eaa1940344228201e83db279bc7, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.318
+      objectReference: {fileID: 0}
+    - target: {fileID: 4343536227391618198, guid: e7d85eaa1940344228201e83db279bc7, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4343536227391618198, guid: e7d85eaa1940344228201e83db279bc7, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4343536227391618198, guid: e7d85eaa1940344228201e83db279bc7, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4343536227391618198, guid: e7d85eaa1940344228201e83db279bc7, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4343536227391618198, guid: e7d85eaa1940344228201e83db279bc7, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4343536227391618198, guid: e7d85eaa1940344228201e83db279bc7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4343536227391618198, guid: e7d85eaa1940344228201e83db279bc7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4343536227391618198, guid: e7d85eaa1940344228201e83db279bc7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: bed8dd24e5dd60c49b499be4b135d003, type: 3}
+  m_SourcePrefab: {fileID: 100100000, guid: e7d85eaa1940344228201e83db279bc7, type: 3}
+--- !u!4 &6317198667062723398 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4343536227391618198, guid: e7d85eaa1940344228201e83db279bc7, type: 3}
+  m_PrefabInstance: {fileID: 7776702360934416336}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &9052773357094208361 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: -7616276365169951559, guid: e7d85eaa1940344228201e83db279bc7, type: 3}
+  m_PrefabInstance: {fileID: 7776702360934416336}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1186523ec6a5b4f49aba67b4654193cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Shotgun

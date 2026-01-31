@@ -21,8 +21,8 @@ public class WeaponBase : MonoBehaviour
 
     private FireState mCurState;
     
-    private float mCurTime;
-    private int mAmmoLeft;
+    protected float mCurTime;
+    protected int mAmmoLeft;
 
     public void toggleFire(bool firing = false)
     {
@@ -42,32 +42,36 @@ public class WeaponBase : MonoBehaviour
         mAmmoLeft = mMaxAmmo;
     }
 
-    // Update is called once per frame
-    void Update()
+    protected virtual void TryFire()
     {
         float timeToBullet = 60.0f / mFireRate;
         
         if(mCurTime < timeToBullet) mCurTime += Time.deltaTime;
+        
+        if(mCurTime > timeToBullet)
+        {
+            Vector2 firePos = transform.position;
+            if(mFirePosition != null)
+            {
+                firePos = mFirePosition.transform.position;
+            }
 
+            GameObject bulletObj = Instantiate(mBulletPrefab, firePos, transform.rotation);
+            Bullet firedBullet = bulletObj.GetComponent<Bullet>();
+            
+            firedBullet.InitializeBulletData(transform.up, mBulletVelocity, mDamage, transform.root.gameObject);
+            mAmmoLeft -= 1;
+            
+            mCurTime -= timeToBullet;
+        }
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
         if(mCurState == FireState.FIRING && mAmmoLeft > 0)
         {
-
-            if(mCurTime > timeToBullet)
-            {
-                Vector2 firePos = transform.position;
-                if(mFirePosition != null)
-                {
-                    firePos = mFirePosition.transform.position;
-                }
-
-                GameObject bulletObj = Instantiate(mBulletPrefab, firePos, transform.rotation);
-                Bullet firedBullet = bulletObj.GetComponent<Bullet>();
-                
-                firedBullet.InitializeBulletData(transform.up, mBulletVelocity, mDamage, transform.root.gameObject);
-                mAmmoLeft -= 1;
-                
-                mCurTime -= timeToBullet;
-            }
+            TryFire();
         }
     }
 }

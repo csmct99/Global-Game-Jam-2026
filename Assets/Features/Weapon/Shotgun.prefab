@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4343536227391618198}
   - component: {fileID: 6079550968772916955}
-  - component: {fileID: 3021812174559373454}
+  - component: {fileID: -7616276365169951559}
   m_Layer: 0
-  m_Name: Weapon
+  m_Name: Shotgun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -84,7 +84,7 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 0, b: 0.82385063, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -93,7 +93,7 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
---- !u!114 &3021812174559373454
+--- !u!114 &-7616276365169951559
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -102,15 +102,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 1655522961370302748}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f25bde2e92bf547de9978c7698fa16de, type: 3}
+  m_Script: {fileID: 11500000, guid: 1186523ec6a5b4f49aba67b4654193cb, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::WeaponBase
+  m_EditorClassIdentifier: Assembly-CSharp::Shotgun
   mDamage: 5
-  mBulletVelocity: 100
+  mBulletVelocity: 5
   mFireRate: 90
   mBulletPrefab: {fileID: 5751854089035933097, guid: 869e19db802d24fb09c5aa0530653d44, type: 3}
   mFirePosition: {fileID: 3362299290924643097}
-  mMaxAmmo: 60
+  mMaxAmmo: 20
+  mNumPellets: 5
+  mSpreadAngle: 90
 --- !u!1 &3362299290924643097
 GameObject:
   m_ObjectHideFlags: 0
