@@ -14,10 +14,16 @@ public class PlayerControls : MonoBehaviour
     [Header("Dependencies")]
     [Tooltip("The Rigidbody2D component used for movement. Must be set to Kinematic.")]
     [SerializeField] private Rigidbody2D _rigidbody;
+    [SerializeField] private WeaponBase _weapon;
 
     private Camera _mainCamera;
+
     private InputAction _moveAction;
     private Vector2 _currentMoveInput;
+
+    private InputAction _attackAction;
+    private float _curAttackInput;
+
     private Vector2 _mousePosition;
 
     private void Awake()
@@ -71,10 +77,21 @@ public class PlayerControls : MonoBehaviour
             {
                 Debug.LogError($"{nameof(PlayerControls)}: Could not find an Input Action named 'Move'.");
             }
+
+            _attackAction = actions.FindAction("Attack");
+            if (_attackAction == null)
+            {
+                Debug.LogError($"{nameof(PlayerControls)}: Could not find an Input Action named 'Fire'.");
+            }
         }
         else
         {
             Debug.LogError($"{nameof(PlayerControls)}: PlayerInput component is missing.");
+        }
+
+        if(_weapon == null)
+        {
+            Debug.LogWarning($"{nameof(PlayerControls)}: Missing weapon.");
         }
     }
 
@@ -83,6 +100,17 @@ public class PlayerControls : MonoBehaviour
         if (_moveAction != null)
         {
             _currentMoveInput = _moveAction.ReadValue<Vector2>();
+        }
+
+        if (_attackAction != null)
+        {
+            float oldAttackInput = _curAttackInput;
+            float newAttackInput = _attackAction.ReadValue<float>();
+
+            if(oldAttackInput != newAttackInput)
+            {
+                HandleAttackInput(oldAttackInput, newAttackInput);
+            }
         }
 
         if (Mouse.current != null)
@@ -119,5 +147,12 @@ public class PlayerControls : MonoBehaviour
         // Smoothly rotate towards the target angle
         Quaternion targetRotation = Quaternion.Euler(0, 0, targetAngle);
         transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, _rotationSpeed * Time.fixedDeltaTime);
+    }
+
+    private void HandleAttackInput(float oldAttackInput, float newAttackInput) {
+        if(oldAttackInput != newAttackInput && _weapon != null) {
+            _curAttackInput = newAttackInput;
+            _weapon.toggleFire(newAttackInput == 1);
+        }
     }
 }
