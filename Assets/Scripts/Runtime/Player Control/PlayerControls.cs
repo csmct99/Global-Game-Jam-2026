@@ -1,27 +1,23 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.Serialization;
 
 public class PlayerControls : MonoBehaviour
 {
-    [Header("Settings")]
-    [Tooltip("Movement speed in units per second.")]
-    [SerializeField] private float _moveSpeed = 5f;
-
-    [Tooltip("Rotation speed in degrees per second.")]
-    [SerializeField] private float _rotationSpeed = 720f;
-
-    [Header("Dependencies")]
-    [Tooltip("The Rigidbody2D component used for movement. Must be set to Kinematic.")]
-    [SerializeField] private Rigidbody2D _rigidbody;
-
     private Camera _mainCamera;
     private InputAction _moveAction;
     private Vector2 _currentMoveInput;
     private Vector2 _mousePosition;
 
-    private void Awake()
+    private float _moveSpeed;
+    private float _rotationSpeed;
+    private Rigidbody2D _rigidbody;
+    
+    public void Initialize(float moveSpeed, float rotationSpeed, Rigidbody2D rigidbody)
     {
+        _moveSpeed = moveSpeed;
+        _rotationSpeed = rotationSpeed;
+        _rigidbody = rigidbody;
+        
         InitializeDependencies();
     }
 
@@ -56,13 +52,6 @@ public class PlayerControls : MonoBehaviour
             }
         }
 
-        // Verify Rigidbody settings
-        if (_rigidbody != null && _rigidbody.bodyType != RigidbodyType2D.Kinematic)
-        {
-            Debug.LogWarning($"{nameof(PlayerControls)}: Rigidbody2D should be set to 'Kinematic' for this controller.");
-        }
-
-        
         InputActionAsset actions = InputSystem.actions;
         if (actions != null)
         {

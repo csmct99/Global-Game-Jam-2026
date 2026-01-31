@@ -150,5 +150,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d456c64b15f30794dacd097e104afaf0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SmoothFollowTarget
-  _interpolationSpeed: 0.01
+  _interpolationSpeed: 0.025
   _target: {fileID: 0}
