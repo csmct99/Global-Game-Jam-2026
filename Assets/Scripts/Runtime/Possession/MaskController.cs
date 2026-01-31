@@ -3,6 +3,7 @@ using System;
 using UnityEngine;
 using UnityEngine.Animations;
 using UnityEngine.InputSystem;
+using UnityEngine.Serialization;
 
 namespace Runtime
 {
@@ -33,6 +34,17 @@ namespace Runtime
 
 		private int _currentThrowsRemaining;
 
+		private float _recoveryEnterTime;
+
+		[SerializeField]
+		private float _maxRecoveryTime = 2f;
+
+		[SerializeField]
+		private float _possessStunDuration = 1.5f;
+
+		private float _inputLockTimestamp;
+		private bool _isInputLocked = false;
+
 		#endregion
 
 		#region MonoBehaviour Methods
@@ -56,6 +68,12 @@ namespace Runtime
 					ThrowMaskAtCursor();
 				}
 			}
+
+			//Check if input needs unlocking
+			if (_isInputLocked && Time.time - _inputLockTimestamp > _possessStunDuration)
+			{
+				UnlockInputs();
+			}
 		}
 
 		private void OnCollisionEnter2D(Collision2D other)
@@ -76,6 +94,23 @@ namespace Runtime
 		#endregion
 
 		#region Private Methods
+
+		private void LockInputs()
+		{
+			InputActionAsset actions = InputSystem.actions;
+			actions.Disable();
+
+			_isInputLocked = true;
+			_inputLockTimestamp = Time.time;
+		}
+
+		private void UnlockInputs()
+		{
+			InputActionAsset actions = InputSystem.actions;
+			actions.Enable();
+
+			_isInputLocked = false;
+		}
 
 		private void ThrowMaskAtCursor()
 		{
@@ -132,6 +167,9 @@ namespace Runtime
 			_parentConstraint.constraintActive = true;
 
 			RefreshThrows();
+
+			// Lock inputs for stun
+			LockInputs();
 		}
 
 		private void DePossess()
@@ -164,6 +202,8 @@ namespace Runtime
 
 			// Give throws back
 			RefreshThrows();
+
+			UnlockInputs();
 		}
 
 		private void SetCollisionState(bool allowCollisions)
@@ -174,10 +214,17 @@ namespace Runtime
 
 		private void EnterRecoveryState()
 		{
+			_recoveryEnterTime = Time.time;
 		}
 
 		private void ExitRecoveryState()
 		{
+			_recoveryEnterTime = -1f;
+		}
+
+		private bool InRecoveryTooLong()
+		{
+			return _recoveryEnterTime != -1.0f && Time.time - _recoveryEnterTime >= _maxRecoveryTime;
 		}
 
 		#endregion
