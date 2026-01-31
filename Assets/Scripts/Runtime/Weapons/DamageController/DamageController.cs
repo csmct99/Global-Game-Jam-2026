@@ -1,4 +1,5 @@
 using System;
+using Runtime;
 using UnityEngine;
 
 public class DamageController : MonoBehaviour
@@ -14,8 +15,16 @@ public class DamageController : MonoBehaviour
 
         if (mCurHealth <= 0)
         {
-            // TODO: death anim/vfx/end game screen
-            Destroy(gameObject);
+            Agent agent = gameObject.GetComponent<Agent>();
+
+            if(agent != null)
+            {
+                agent.StopPossess(null); // this should likely be in the mask controller
+
+                // TODO: toggle death state for possession
+            }
+
+            Destroy(gameObject); // remove this when death state is setup
         }
     }
 
