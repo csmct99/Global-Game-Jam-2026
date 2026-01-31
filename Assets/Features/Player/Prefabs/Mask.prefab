@@ -117,6 +117,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  _visualsTransform: {fileID: 8378144966088712118}
 --- !u!50 &1544434164589130616
 Rigidbody2D:
   serializedVersion: 5

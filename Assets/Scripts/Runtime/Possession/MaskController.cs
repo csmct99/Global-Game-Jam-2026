@@ -1,10 +1,14 @@
 using System;
 
+using DG.Tweening;
+
 using UnityEngine;
 using UnityEngine.Animations;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
 using UnityEngine.Serialization;
+
+using Random = UnityEngine.Random;
 
 namespace Runtime
 {
@@ -71,6 +75,14 @@ namespace Runtime
 
 		private Vector2 _throwDirection;
 
+		private float _maxShakeIntensity = 1f;
+		private Vector3 _originalLocalPos = Vector2.zero;
+
+		[SerializeField]
+		private Transform _visualsTransform;
+
+		private bool _isInRecovery = false;
+
 		#endregion
 
 		#region MonoBehaviour Methods
@@ -100,7 +112,7 @@ namespace Runtime
 			{
 				UnlockInputs();
 			}
-			
+
 			CheckForStoppedThrow();
 		}
 
@@ -190,7 +202,7 @@ namespace Runtime
 			_currentDeceleration = initialSpeed / _throwDuration;
 
 			_rigidbody2D.linearVelocity = _throwDirection * initialSpeed;
-			
+
 			ExitRecoveryState();
 		}
 
@@ -200,16 +212,37 @@ namespace Runtime
 			{
 				return;
 			}
-			
+
 			if (_rigidbody2D.linearVelocity.magnitude < 0.1)
 			{
 				EnterRecoveryState();
 
+				DoRecoveryFeedback();
+
 				if (InRecoveryTooLong())
 				{
-					Debug.Log("LONG RECOVERY");
+					GameManager.Instance.RestartLevel();
 				}
 			}
+		}
+
+		private void DoRecoveryFeedback()
+		{
+			float timeLeft = _maxRecoveryTime - (Time.time - _recoveryEnterTime);
+			float progressToDeath = Mathf.Clamp01(1 - (timeLeft / _maxRecoveryTime));
+			float currentShake = Mathf.Pow(progressToDeath, 2) * _maxShakeIntensity;
+
+			_visualsTransform.localPosition = _originalLocalPos + (Vector3) Random.insideUnitCircle * currentShake;
+
+			if (progressToDeath >= 1f)
+			{
+				_visualsTransform.localPosition = _originalLocalPos;
+			}
+		}
+
+		private void ResetRecoveryFeedback()
+		{
+			_visualsTransform.localPosition = Vector3.zero;
 		}
 
 		private void RefreshThrows()
@@ -252,7 +285,7 @@ namespace Runtime
 			_parentConstraint.constraintActive = true;
 
 			_onPossessionBegin?.Invoke();
-			
+
 			ExitRecoveryState();
 
 			RefreshThrows();
@@ -290,9 +323,8 @@ namespace Runtime
 			RefreshThrows();
 
 			UnlockInputs();
-			
-			ThrowMaskAtCursor();
 
+			ThrowMaskAtCursor();
 		}
 
 		private void SetCollisionState(bool allowCollisions)
@@ -303,12 +335,11 @@ namespace Runtime
 				_rigidbody2D.linearVelocity = Vector2.zero;
 		}
 
-		private bool _isInRecovery = false;
 		private void EnterRecoveryState()
 		{
 			if (!_isInRecovery)
 			{
-				_recoveryEnterTime =  Time.time;
+				_recoveryEnterTime = Time.time;
 				_isInRecovery = true;
 			}
 		}
@@ -317,9 +348,11 @@ namespace Runtime
 		{
 			if (!_isInRecovery)
 				return;
-			
+
 			_isInRecovery = false;
 			_recoveryEnterTime = -1f;
+			
+			ResetRecoveryFeedback();
 		}
 
 		private bool InRecoveryTooLong()
