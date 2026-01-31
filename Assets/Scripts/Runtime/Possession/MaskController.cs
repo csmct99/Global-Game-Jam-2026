@@ -322,7 +322,11 @@ namespace Runtime
 
 			// Kill the target
 			// TODO: Make this more interesting than a "delete"
-			Destroy(_currentPossessedTarget.GetGameObject());
+			DamageController possessedTargetDC = _currentPossessedTarget.GetGameObject().GetComponent<DamageController>();
+			if(possessedTargetDC != null) {
+				possessedTargetDC.Kill();
+			}
+
 			// Drop cached reference
 			_currentPossessedTarget = null;
 

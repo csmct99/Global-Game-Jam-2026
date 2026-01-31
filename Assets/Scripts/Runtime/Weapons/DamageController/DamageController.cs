@@ -11,6 +11,10 @@ public class DamageController : MonoBehaviour
     [SerializeField] private AudioClip deathSound;
     private float mCurHealth;
 
+    public void Kill()
+    {
+        TakeDamage(mMaxHealth);
+    }
 
     public void TakeDamage(float damage)
     {
