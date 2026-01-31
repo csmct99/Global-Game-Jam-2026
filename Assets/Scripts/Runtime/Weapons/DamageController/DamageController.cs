@@ -11,6 +11,24 @@ public class DamageController : MonoBehaviour
     [SerializeField] private AudioClip deathSound;
     private float mCurHealth;
 
+    public float CurrentHealth
+    {
+        get
+        {
+            return mCurHealth;
+        }
+    }
+
+    public float MaxHealth
+    {
+        get
+        {
+            return mMaxHealth;
+        }
+    }
+
+    public float HealthAsPercent =>  CurrentHealth / MaxHealth;
+    
     public void Kill()
     {
         TakeDamage(mMaxHealth);
@@ -18,9 +36,9 @@ public class DamageController : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
-        mCurHealth -= damage;
+        mCurHealth = CurrentHealth - damage;
 
-        if (mCurHealth <= 0)
+        if (CurrentHealth <= 0)
         {
             MaskController mask = gameObject.GetComponent<MaskController>();
             Agent agent = gameObject.GetComponent<Agent>();
@@ -38,16 +56,8 @@ public class DamageController : MonoBehaviour
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    void Awake()
     {
-        mCurHealth = mMaxHealth;
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-        
+        mCurHealth = MaxHealth;
     }
 }
