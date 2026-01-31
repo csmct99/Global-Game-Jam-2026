@@ -163,6 +163,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DamageController
   mMaxHealth: 50
+  hurtSound: {fileID: 8300000, guid: 5d1a9fcfa92d74b5b85f55fac5e5e3a0, type: 3}
+  deathSound: {fileID: 8300000, guid: 60d2703e6d3db4d4db127a03fe35fbf4, type: 3}
 --- !u!1 &3155086485271466828
 GameObject:
   m_ObjectHideFlags: 0

@@ -6,7 +6,8 @@ public class DamageController : MonoBehaviour
 {
 
     [SerializeField] float mMaxHealth;
-
+    [SerializeField] private AudioClip hurtSound;
+    [SerializeField] private AudioClip deathSound;
     private float mCurHealth;
 
     public void TakeDamage(float damage)
@@ -16,6 +17,9 @@ public class DamageController : MonoBehaviour
         if (mCurHealth <= 0)
         {
             Agent agent = gameObject.GetComponent<Agent>();
+            
+            //Play deathsound
+            SoundFXManager.instance.PlaySoundFXClip(deathSound, transform, 1f);
 
             if(agent != null)
             {

@@ -377,7 +377,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da855e339a3d24ab99fb711228d1cc80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SoundFXManager
-  soundFXObject: {fileID: 0}
+  soundFXObject: {fileID: 6399268482872710490, guid: 75b6e87eee58b43c1823da6d25a31707, type: 3}
 --- !u!4 &1260419599
 Transform:
   m_ObjectHideFlags: 0
@@ -631,9 +631,9 @@ SceneRoots:
   m_Roots:
   - {fileID: 1355507002}
   - {fileID: 1914564474}
+  - {fileID: 1260419599}
+  - {fileID: 1024191972}
   - {fileID: 492672803}
   - {fileID: 846158366}
   - {fileID: 302358807}
   - {fileID: 1558936124}
-  - {fileID: 1260419599}
-  - {fileID: 1024191972}
