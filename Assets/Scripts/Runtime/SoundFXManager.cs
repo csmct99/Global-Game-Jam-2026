@@ -13,7 +13,7 @@ public class SoundFXManager : MonoBehaviour
         }
     }
 
-    public void PlaySoundFXClip(AudioClip audioClip, Transform spawnTransform, float volume)
+    public GameObject PlaySoundFXClip(AudioClip audioClip, Transform spawnTransform, float volume)
     {
         //spawn in gameObject
         AudioSource audioSource = Instantiate(soundFXObject, spawnTransform.position, Quaternion.identity);
@@ -27,8 +27,10 @@ public class SoundFXManager : MonoBehaviour
         float clipLength = audioSource.clip.length;
         //destroy the clip after it is done playing
         Destroy(audioSource.gameObject, clipLength);
+        
+        return audioSource.gameObject;
     }
-    public void PlayRandomSoundFXClip(AudioClip[] audioClip, Transform spawnTransform, float volume)
+    public GameObject PlayRandomSoundFXClip(AudioClip[] audioClip, Transform spawnTransform, float volume)
     {
         //assign a random index
         int rand = Random.Range(0, audioClip.Length);
@@ -44,5 +46,12 @@ public class SoundFXManager : MonoBehaviour
         float clipLength = audioSource.clip.length;
         //destroy the clip after it is done playing
         Destroy(audioSource.gameObject, clipLength);
+        
+        return audioSource.gameObject;
+    }
+
+    public void DestroyAudioSource()
+    {
+        Destroy(soundFXObject);
     }
 }

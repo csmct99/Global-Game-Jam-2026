@@ -13,6 +13,8 @@ public class WeaponBase : MonoBehaviour
     [SerializeField] public GameObject mFirePosition;
     [SerializeField] public int mMaxAmmo;
 
+    [SerializeField] private AudioClip gunRevolverFire;
+
     enum FireState
     {
         IDLE,

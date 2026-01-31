@@ -65,6 +65,15 @@ namespace Runtime
 
 		[SerializeField]
 		private UnityEvent _onInputsUnlocked;
+		
+		[Header("SoundFX")]
+		[SerializeField]
+		private AudioClip enemyHurt;
+		[SerializeField]
+		private AudioClip[] enemyScreams;
+		[SerializeField]
+		private AudioClip enemyDeath;
+		public GameObject audioInstance;
 
 		private float _inputLockTimestamp;
 		private bool _isInputLocked = false;
@@ -233,6 +242,8 @@ namespace Runtime
 
 			RefreshThrows();
 
+			//Play Random Scream Sound
+			audioInstance = SoundFXManager.instance.PlayRandomSoundFXClip(enemyScreams, transform, 1f);
 			// Lock inputs for stun
 			LockInputs();
 		}
@@ -244,6 +255,8 @@ namespace Runtime
 				throw new Exception("Tried to de-possess even though we are not currently possessing anything!");
 			}
 
+			if (audioInstance != null) Destroy(audioInstance);
+			
 			_currentPossessedTarget.StopPossess(this);
 
 			// Stop following the possessed target
@@ -253,7 +266,6 @@ namespace Runtime
 			// Kill the target
 			// TODO: Make this more interesting than a "delete"
 			Destroy(_currentPossessedTarget.GetGameObject());
-
 			// Drop cached reference
 			_currentPossessedTarget = null;
 
@@ -264,6 +276,7 @@ namespace Runtime
 
 			// Give throws back
 			RefreshThrows();
+			
 
 			UnlockInputs();
 			
