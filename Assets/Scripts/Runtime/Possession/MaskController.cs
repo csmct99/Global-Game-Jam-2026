@@ -34,6 +34,10 @@ namespace Runtime
 		private float _spawnDistanceFromTarget = 2f;
 
 		[SerializeField]
+		[Range(0, 1)]
+		private float _healthPercentRequiredToPossessWithoutStun = 0.2f;
+
+		[SerializeField]
 		private float _possessStunDuration = 1.5f;
 
 		[Header("Throws")]
@@ -140,7 +144,11 @@ namespace Runtime
 
 			if (TryGetPossessable(other.gameObject, out IPossessable possessable))
 			{
-				Possess(possessable);
+				DamageController damageController = other.gameObject.GetComponent<DamageController>();
+
+				// Check their health level to detetrmine if we need to stun the player
+				bool shouldStun = damageController.HealthAsPercent > _healthPercentRequiredToPossessWithoutStun;
+				Possess(possessable, shouldStun);
 			}
 		}
 
@@ -271,7 +279,7 @@ namespace Runtime
 			return possessable != null;
 		}
 
-		private void Possess(IPossessable target)
+		private void Possess(IPossessable target, bool willStun = true)
 		{
 			if (_currentPossessedTarget != null)
 			{
@@ -302,7 +310,8 @@ namespace Runtime
 			//Play Random Scream Sound
 			audioInstance = SoundFXManager.instance.PlayRandomSoundFXClip(enemyScreams, transform, 1f);
 			// Lock inputs for stun
-			LockInputs();
+			if (willStun)
+				LockInputs();
 		}
 
 		private void DePossess()
