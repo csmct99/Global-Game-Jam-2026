@@ -250,11 +250,6 @@ namespace Runtime
 			_parentConstraint.RemoveSource(0);
 			_parentConstraint.constraintActive = false;
 
-			// Place the mask in front of the target
-			Transform target = _currentPossessedTarget.GetGameObject().transform;
-			Vector2 newPos = target.position + target.up * _spawnDistanceFromTarget;
-			transform.position = newPos;
-
 			// Kill the target
 			// TODO: Make this more interesting than a "delete"
 			Destroy(_currentPossessedTarget.GetGameObject());
@@ -271,6 +266,9 @@ namespace Runtime
 			RefreshThrows();
 
 			UnlockInputs();
+			
+			ThrowMaskAtCursor();
+
 		}
 
 		private void SetCollisionState(bool allowCollisions)
