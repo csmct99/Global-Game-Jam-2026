@@ -119,6 +119,17 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!114 &93245754 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5780786269809765623, guid: c9fe5715e568d5a40b51cb2934e35cac, type: 3}
+  m_PrefabInstance: {fileID: 130538114}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f25bde2e92bf547de9978c7698fa16de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WeaponBase
 --- !u!1001 &130538114
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -131,6 +142,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 2003453159930321951, guid: c9fe5715e568d5a40b51cb2934e35cac, type: 3}
+      propertyPath: _weapon
+      value: 
+      objectReference: {fileID: 93245754}
     - target: {fileID: 9004122366926284500, guid: c9fe5715e568d5a40b51cb2934e35cac, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
