@@ -77,6 +77,8 @@ namespace Runtime
 		private AudioClip[] enemyScreams;
 		[SerializeField]
 		private AudioClip enemyDeath;
+		private AudioClip maskSqueal
+		
 		public GameObject audioInstance;
 
 		private float _inputLockTimestamp;
