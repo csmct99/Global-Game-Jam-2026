@@ -2,6 +2,7 @@ using System;
 
 using UnityEngine;
 using UnityEngine.Animations;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 using UnityEngine.Serialization;
 
@@ -14,6 +15,7 @@ namespace Runtime
 		private InputAction _throwMaskInput;
 		private IPossessable _currentPossessedTarget;
 
+		[Header("References")]
 		[SerializeField]
 		private Rigidbody2D _rigidbody2D;
 
@@ -21,26 +23,42 @@ namespace Runtime
 		private Collider2D _collider;
 
 		[SerializeField]
-		private float _throwStrength = 10f;
-
-		[SerializeField]
 		private ParentConstraint _parentConstraint;
 
+		[Header("Possession")]
 		[SerializeField]
 		private float _spawnDistanceFromTarget = 2f;
 
 		[SerializeField]
+		private float _possessStunDuration = 1.5f;
+
+		[Header("Throws")]
+		[SerializeField]
 		private int _maxThrowAttempts = 2;
+
+		[SerializeField]
+		private float _throwStrength = 10f;
 
 		private int _currentThrowsRemaining;
 
 		private float _recoveryEnterTime;
 
+		[Header("Recovery")]
 		[SerializeField]
 		private float _maxRecoveryTime = 2f;
 
+		[Header("Events")]
 		[SerializeField]
-		private float _possessStunDuration = 1.5f;
+		private UnityEvent _onPossessionBegin;
+
+		[SerializeField]
+		private UnityEvent _onPossessionEnd;
+
+		[SerializeField]
+		private UnityEvent _onInputsLocked;
+
+		[SerializeField]
+		private UnityEvent _onInputsUnlocked;
 
 		private float _inputLockTimestamp;
 		private bool _isInputLocked = false;
@@ -102,6 +120,8 @@ namespace Runtime
 
 			_isInputLocked = true;
 			_inputLockTimestamp = Time.time;
+
+			_onInputsLocked?.Invoke();
 		}
 
 		private void UnlockInputs()
@@ -110,6 +130,8 @@ namespace Runtime
 			actions.Enable();
 
 			_isInputLocked = false;
+
+			_onInputsUnlocked?.Invoke();
 		}
 
 		private void ThrowMaskAtCursor()
@@ -166,6 +188,8 @@ namespace Runtime
 			});
 			_parentConstraint.constraintActive = true;
 
+			_onPossessionBegin?.Invoke();
+
 			RefreshThrows();
 
 			// Lock inputs for stun
@@ -199,6 +223,8 @@ namespace Runtime
 
 			// Allow collisions again
 			SetCollisionState(true);
+
+			_onPossessionEnd?.Invoke();
 
 			// Give throws back
 			RefreshThrows();
