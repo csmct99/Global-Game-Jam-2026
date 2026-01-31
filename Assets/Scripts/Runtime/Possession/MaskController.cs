@@ -22,6 +22,9 @@ namespace Runtime
         [SerializeField] private ParentConstraint _parentConstraint;
         
         [SerializeField] private float _spawnDistanceFromTarget = 2f;
+
+        [SerializeField] private int _maxThrowAttempts = 2;
+        private int _currentThrowsRemaining;
         
         public void Update()
         {
@@ -40,6 +43,14 @@ namespace Runtime
 
         private void ThrowMaskAtCursor()
         {
+            if (_currentThrowsRemaining <= 0)
+            {
+                Debug.Log("Out of throws!");
+                return;
+            }
+
+            _currentThrowsRemaining--;
+            
             Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
             Vector2 throwDirection = (mouseWorldPos - transform.position).normalized;
             _rigidbody2D.AddForce(throwDirection * _throwStrength, ForceMode2D.Impulse);
@@ -47,9 +58,15 @@ namespace Runtime
 
         private void Awake()
         {
+            RefreshThrows();
             SetupInputs(); 
         }
 
+        private void RefreshThrows()
+        {
+            _currentThrowsRemaining = _maxThrowAttempts;
+        }
+        
         private void SetupInputs()
         {
             InputActionAsset actions = InputSystem.actions;
@@ -94,6 +111,8 @@ namespace Runtime
             transform.position = target.GetGameObject().transform.position;
             _parentConstraint.AddSource(new ConstraintSource() { sourceTransform = target.GetGameObject().transform, weight = 1f });
             _parentConstraint.constraintActive = true;
+            
+            RefreshThrows();
         }
 
         private void DePossess()
@@ -105,6 +124,7 @@ namespace Runtime
             
             _currentPossessedTarget.StopPossess(this);
             
+            // Stop following the possessed target
             _parentConstraint.RemoveSource(0);
             _parentConstraint.constraintActive = false;
             
@@ -113,9 +133,18 @@ namespace Runtime
             Vector2 newPos = target.position + target.up * _spawnDistanceFromTarget; // 2 is spawn dist.
             transform.position = newPos;
             
+            // Kill the target
+            //TODO: Make this more interesting than a "delete"
+            Destroy(_currentPossessedTarget.GetGameObject());
+            
+            // Drop cached reference
             _currentPossessedTarget = null;
             
+            // Allow collisions again
             SetCollisionState(true);
+            
+            // Give throws back
+            RefreshThrows();
         }
 
         private void SetCollisionState(bool allowCollisions)
@@ -123,5 +152,17 @@ namespace Runtime
             _collider.enabled = allowCollisions;
             _rigidbody2D.isKinematic = !allowCollisions;
         }
+        
+        private void EnterRecoveryState()
+        {
+            
+        }
+
+        private void ExitRecoveryState()
+        {
+            
+        }
+        
+        
     }
 }
