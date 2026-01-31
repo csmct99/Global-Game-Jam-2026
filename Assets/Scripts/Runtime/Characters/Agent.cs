@@ -46,7 +46,6 @@ namespace Runtime
 
 		public virtual void BeginPossess(MaskController mask)
 		{
-			Debug.Log($"Beginning possession of {gameObject.name}");
 			_isPossessed = true;
 
 			ConfigureRigidbodyForPossession(_rigidbody, true);
@@ -65,8 +64,6 @@ namespace Runtime
 
 		public virtual void StopPossess(MaskController mask)
 		{
-			Debug.Log($"Stopping possession of {gameObject.name}");
-
 			ConfigureRigidbodyForPossession(_rigidbody, false);
 
 			PlayerControls playerControls = GetComponent<PlayerControls>();
