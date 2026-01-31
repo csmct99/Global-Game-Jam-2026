@@ -1,22 +1,35 @@
+using Mono.Cecil;
+
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class SoundFXManager : MonoBehaviour
 {
-    public static SoundFXManager instance;
-    
-    [SerializeField] private AudioSource soundFXObject;
-    private void Awake()
+    private static SoundFXManager _instance;
+    public static SoundFXManager Instance
     {
-        if (instance == null)
+        get
         {
-            instance = this;
+            if (_instance == null)
+            {
+                GameObject go = Resources.Load<GameObject>("SoundFXManager");
+                DontDestroyOnLoad(go);
+                
+                _instance = go.GetComponent<SoundFXManager>();
+            }
+            
+            return _instance;
         }
     }
+    
+    [SerializeField] private GameObject _soundFXObject;
 
     public GameObject PlaySoundFXClip(AudioClip audioClip, Transform spawnTransform, float volume)
     {
         //spawn in gameObject
-        AudioSource audioSource = Instantiate(soundFXObject, spawnTransform.position, Quaternion.identity);
+        GameObject audioGameObject = Instantiate(_soundFXObject, spawnTransform.position, Quaternion.identity);
+        AudioSource audioSource = audioGameObject.GetComponent<AudioSource>();
+        
         //assign the audioClip
         audioSource.clip = audioClip;
         //assign volume
@@ -35,7 +48,9 @@ public class SoundFXManager : MonoBehaviour
         //assign a random index
         int rand = Random.Range(0, audioClip.Length);
         //spawn in gameObject
-        AudioSource audioSource = Instantiate(soundFXObject, spawnTransform.position, Quaternion.identity);
+        GameObject audioGameObject = Instantiate(_soundFXObject, spawnTransform.position, Quaternion.identity);
+        AudioSource  audioSource = audioGameObject.GetComponent<AudioSource>(); 
+        
         //assign the audioClip
         audioSource.clip = audioClip[rand];
         //assign volume
@@ -52,6 +67,6 @@ public class SoundFXManager : MonoBehaviour
 
     public void DestroyAudioSource()
     {
-        Destroy(soundFXObject);
+        Destroy(_soundFXObject);
     }
 }

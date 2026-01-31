@@ -44,7 +44,7 @@ public class DamageController : MonoBehaviour
             Agent agent = gameObject.GetComponent<Agent>();
             
             //Play deathsound
-            SoundFXManager.instance.PlaySoundFXClip(deathSound, transform, 1f);
+            SoundFXManager.Instance.PlaySoundFXClip(deathSound, transform, 1f);
 
             if(agent.IsPossessed)
             {

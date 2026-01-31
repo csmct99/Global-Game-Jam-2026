@@ -311,7 +311,8 @@ namespace Runtime
 			RefreshThrows();
 
 			//Play Random Scream Sound
-			audioInstance = SoundFXManager.instance.PlayRandomSoundFXClip(enemyScreams, transform, 1f);
+			audioInstance = SoundFXManager.Instance.PlayRandomSoundFXClip(enemyScreams, transform, 1f);
+			
 			// Lock inputs for stun
 			if (willStun)
 				LockInputs();
