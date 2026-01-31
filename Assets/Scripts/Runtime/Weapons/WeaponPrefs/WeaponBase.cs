@@ -8,9 +8,10 @@ public class WeaponBase : MonoBehaviour
 
     [SerializeField] public int mDamage;
     [SerializeField] public float mBulletVelocity; 
-    [SerializeField] public int mFireRate;
+    [SerializeField] public float mFireRate;
     [SerializeField] public GameObject mBulletPrefab; 
     [SerializeField] public GameObject mFirePosition;
+    [SerializeField] public int mMaxAmmo;
 
     enum FireState
     {
@@ -21,6 +22,7 @@ public class WeaponBase : MonoBehaviour
     private FireState mCurState;
     
     private float mCurTime;
+    private int mAmmoLeft;
 
     public void toggleFire(bool firing = false)
     {
@@ -36,16 +38,20 @@ public class WeaponBase : MonoBehaviour
     void Start()
     {
         mCurState = FireState.IDLE;
+
+        mAmmoLeft = mMaxAmmo;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(mCurState == FireState.FIRING)
-        {
-            mCurTime += Time.deltaTime;
+        float timeToBullet = 60.0f / mFireRate;
+        Debug.Log(timeToBullet);
+        if(mCurTime < timeToBullet) mCurTime += Time.deltaTime;
 
-            float timeToBullet = 60/mFireRate;
+        if(mCurState == FireState.FIRING && mAmmoLeft > 0)
+        {
+
             if(mCurTime > timeToBullet)
             {
                 Vector2 firePos = transform.position;
@@ -57,15 +63,11 @@ public class WeaponBase : MonoBehaviour
                 GameObject bulletObj = Instantiate(mBulletPrefab, firePos, transform.rotation);
                 Bullet firedBullet = bulletObj.GetComponent<Bullet>();
                 
-                firedBullet.SetDamage(mDamage);
-                firedBullet.Fire(transform.up, mBulletVelocity);
+                firedBullet.InitializeBulletData(transform.up, mBulletVelocity, mDamage, transform.root.gameObject);
+                mAmmoLeft -= 1;
                 
                 mCurTime -= timeToBullet;
             }
-        }
-        else if(mCurState == FireState.IDLE)
-        {
-            mCurTime = 0;
         }
     }
 }

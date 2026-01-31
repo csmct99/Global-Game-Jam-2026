@@ -110,6 +110,7 @@ MonoBehaviour:
   mFireRate: 90
   mBulletPrefab: {fileID: 5751854089035933097, guid: 869e19db802d24fb09c5aa0530653d44, type: 3}
   mFirePosition: {fileID: 3362299290924643097}
+  mMaxAmmo: 60
 --- !u!1 &3362299290924643097
 GameObject:
   m_ObjectHideFlags: 0
