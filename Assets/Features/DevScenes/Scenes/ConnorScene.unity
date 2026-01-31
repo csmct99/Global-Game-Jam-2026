@@ -132,6 +132,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1544434164589130616, guid: c9fe5715e568d5a40b51cb2934e35cac, type: 3}
+      propertyPath: m_Mass
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1544434164589130616, guid: c9fe5715e568d5a40b51cb2934e35cac, type: 3}
+      propertyPath: m_LinearDamping
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1914248890047212519, guid: c9fe5715e568d5a40b51cb2934e35cac, type: 3}
       propertyPath: m_Name
       value: Mask
@@ -268,6 +276,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67c5f279f4b84e4a9433fe1067ff904a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Runtime.EnemyAgent
+  _weapon: {fileID: 0}
   _moveSpeed: 5
   _rotationSpeed: 720
   _rigidbody: {fileID: 109235626}
@@ -934,6 +943,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67c5f279f4b84e4a9433fe1067ff904a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Runtime.EnemyAgent
+  _weapon: {fileID: 0}
   _moveSpeed: 5
   _rotationSpeed: 720
   _rigidbody: {fileID: 926580472}
@@ -1332,6 +1342,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67c5f279f4b84e4a9433fe1067ff904a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Runtime.EnemyAgent
+  _weapon: {fileID: 0}
   _moveSpeed: 5
   _rotationSpeed: 720
   _rigidbody: {fileID: 1614522983}
@@ -1484,6 +1495,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67c5f279f4b84e4a9433fe1067ff904a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Runtime.EnemyAgent
+  _weapon: {fileID: 0}
   _moveSpeed: 5
   _rotationSpeed: 720
   _rigidbody: {fileID: 1698298188}
@@ -1746,6 +1758,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67c5f279f4b84e4a9433fe1067ff904a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Runtime.EnemyAgent
+  _weapon: {fileID: 0}
   _moveSpeed: 5
   _rotationSpeed: 720
   _rigidbody: {fileID: 2115340429}

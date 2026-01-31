@@ -36,10 +36,16 @@ namespace Runtime
 		[SerializeField]
 		private int _maxThrowAttempts = 2;
 
+		[Tooltip("How far the mask travels during a throw.")]
 		[SerializeField]
-		private float _throwStrength = 10f;
+		private float _throwDistance = 8f;
+
+		[Tooltip("How long it takes to travel the Throw Distance.")]
+		[SerializeField]
+		private float _throwDuration = 0.6f;
 
 		private int _currentThrowsRemaining;
+		private float _currentDeceleration; // Calculated per throw
 
 		private float _recoveryEnterTime;
 
@@ -63,6 +69,8 @@ namespace Runtime
 		private float _inputLockTimestamp;
 		private bool _isInputLocked = false;
 
+		private Vector2 _throwDirection;
+
 		#endregion
 
 		#region MonoBehaviour Methods
@@ -73,7 +81,7 @@ namespace Runtime
 			SetupInputs();
 		}
 
-		public void Update()
+		private void Update()
 		{
 			if (_throwMaskInput.WasPressedThisFrame())
 			{
@@ -87,23 +95,27 @@ namespace Runtime
 				}
 			}
 
-			//Check if input needs unlocking
+			// Check if input needs unlocking
 			if (_isInputLocked && Time.time - _inputLockTimestamp > _possessStunDuration)
 			{
 				UnlockInputs();
 			}
 		}
 
+		private void FixedUpdate()
+		{
+			DampVelocity();
+		}
+
 		private void OnCollisionEnter2D(Collision2D other)
 		{
 			if (_currentPossessedTarget != null)
 			{
-				Debug.LogWarning("Got collision event while already possessing a target! ??");
+				Debug.LogWarning("Got collision event while already possessing a target!");
 				return;
 			}
 
-			IPossessable possessable;
-			if (TryGetPossessable(other.gameObject, out possessable))
+			if (TryGetPossessable(other.gameObject, out IPossessable possessable))
 			{
 				Possess(possessable);
 			}
@@ -112,6 +124,29 @@ namespace Runtime
 		#endregion
 
 		#region Private Methods
+
+		private void DampVelocity()
+		{
+			// Standdown during possession
+			if (_currentPossessedTarget != null)
+				return;
+
+			// Linear deceleration to create a "sliding" friction feel
+			if (_rigidbody2D.linearVelocity.sqrMagnitude > 0.001f)
+			{
+				float currentSpeed = _rigidbody2D.linearVelocity.magnitude;
+				float newSpeed = currentSpeed - (_currentDeceleration * Time.fixedDeltaTime);
+
+				if (newSpeed < 0)
+					newSpeed = 0;
+
+				_rigidbody2D.linearVelocity = _rigidbody2D.linearVelocity.normalized * newSpeed;
+			}
+			else
+			{
+				_rigidbody2D.linearVelocity = Vector2.zero;
+			}
+		}
 
 		private void LockInputs()
 		{
@@ -144,9 +179,15 @@ namespace Runtime
 
 			_currentThrowsRemaining--;
 
-			Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
-			Vector2 throwDirection = (mouseWorldPos - transform.position).normalized;
-			_rigidbody2D.AddForce(throwDirection * _throwStrength, ForceMode2D.Impulse);
+			Vector2 mouseWorldPos = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
+			_throwDirection = (mouseWorldPos - (Vector2) transform.position).normalized;
+
+			float initialSpeed = (2 * _throwDistance) / _throwDuration;
+
+			// Deceleration required to reach 0 speed in exactly _throwDuration
+			_currentDeceleration = initialSpeed / _throwDuration;
+
+			_rigidbody2D.linearVelocity = _throwDirection * initialSpeed;
 		}
 
 		private void RefreshThrows()
@@ -209,13 +250,13 @@ namespace Runtime
 			_parentConstraint.RemoveSource(0);
 			_parentConstraint.constraintActive = false;
 
-			//Place the mask in front of the target
+			// Place the mask in front of the target
 			Transform target = _currentPossessedTarget.GetGameObject().transform;
-			Vector2 newPos = target.position + target.up * _spawnDistanceFromTarget; // 2 is spawn dist.
+			Vector2 newPos = target.position + target.up * _spawnDistanceFromTarget;
 			transform.position = newPos;
 
 			// Kill the target
-			//TODO: Make this more interesting than a "delete"
+			// TODO: Make this more interesting than a "delete"
 			Destroy(_currentPossessedTarget.GetGameObject());
 
 			// Drop cached reference
@@ -236,6 +277,8 @@ namespace Runtime
 		{
 			_collider.enabled = allowCollisions;
 			_rigidbody2D.isKinematic = !allowCollisions;
+			if (!allowCollisions)
+				_rigidbody2D.linearVelocity = Vector2.zero;
 		}
 
 		private void EnterRecoveryState()
