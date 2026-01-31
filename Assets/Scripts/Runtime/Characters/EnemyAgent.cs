@@ -1,7 +1,6 @@
 namespace Runtime
 {
-    public class EnemyAgent : Agent
-    {
-        
-    }
+	public class EnemyAgent : Agent
+	{
+	}
 }

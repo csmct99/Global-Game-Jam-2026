@@ -3,110 +3,128 @@ using UnityEngine.InputSystem;
 
 public class PlayerControls : MonoBehaviour
 {
-    private Camera _mainCamera;
-    private InputAction _moveAction;
-    private Vector2 _currentMoveInput;
-    private Vector2 _mousePosition;
+	#region Private Fields
 
-    private float _moveSpeed;
-    private float _rotationSpeed;
-    private Rigidbody2D _rigidbody;
-    
-    public void Initialize(float moveSpeed, float rotationSpeed, Rigidbody2D rigidbody)
-    {
-        _moveSpeed = moveSpeed;
-        _rotationSpeed = rotationSpeed;
-        _rigidbody = rigidbody;
-        
-        InitializeDependencies();
-    }
+	private Camera _mainCamera;
+	private InputAction _moveAction;
+	private Vector2 _currentMoveInput;
+	private Vector2 _mousePosition;
 
-    private void Update()
-    {
-        ReadInput();
-    }
+	private float _moveSpeed;
+	private float _rotationSpeed;
+	private Rigidbody2D _rigidbody;
 
-    private void FixedUpdate()
-    {
-        // Physics-based movement should happen in FixedUpdate
-        HandleMovement();
-        HandleRotation();
-    }
+	#endregion
 
-    private void InitializeDependencies()
-    {
-        _mainCamera = Camera.main;
-        if (_mainCamera == null)
-        {
-            Debug.LogError($"{nameof(PlayerControls)}: Main Camera not found! Rotation will not work.");
-        }
+	#region MonoBehaviour Methods
 
-        if (_rigidbody == null)
-        {
-            // Try to get it automatically if forgot to assign in inspector
-            _rigidbody = GetComponent<Rigidbody2D>();
-            
-            if (_rigidbody == null)
-            {
-                Debug.LogError($"{nameof(PlayerControls)}: Rigidbody2D reference is missing.");
-            }
-        }
+	private void Update()
+	{
+		ReadInput();
+	}
 
-        InputActionAsset actions = InputSystem.actions;
-        if (actions != null)
-        {
-            _moveAction = actions.FindAction("Move");
-            if (_moveAction == null)
-            {
-                Debug.LogError($"{nameof(PlayerControls)}: Could not find an Input Action named 'Move'.");
-            }
-        }
-        else
-        {
-            Debug.LogError($"{nameof(PlayerControls)}: PlayerInput component is missing.");
-        }
-    }
+	private void FixedUpdate()
+	{
+		// Physics-based movement should happen in FixedUpdate
+		HandleMovement();
+		HandleRotation();
+	}
 
-    private void ReadInput()
-    {
-        if (_moveAction != null)
-        {
-            _currentMoveInput = _moveAction.ReadValue<Vector2>();
-        }
+	#endregion
 
-        if (Mouse.current != null)
-        {
-            _mousePosition = Mouse.current.position.ReadValue();
-        }
-    }
+	#region Public Methods
 
-    private void HandleMovement()
-    {
-        if (_rigidbody == null) return;
+	public void Initialize(float moveSpeed, float rotationSpeed, Rigidbody2D rigidbody)
+	{
+		_moveSpeed = moveSpeed;
+		_rotationSpeed = rotationSpeed;
+		_rigidbody = rigidbody;
 
-        // Calculate target position based on input
-        Vector2 displacement = _currentMoveInput * _moveSpeed * Time.fixedDeltaTime;
-        Vector2 targetPosition = _rigidbody.position + displacement;
+		InitializeDependencies();
+	}
 
-        _rigidbody.MovePosition(targetPosition);
-    }
+	#endregion
 
-    private void HandleRotation()
-    {
-        if (_rigidbody == null || _mainCamera == null) return;
+	#region Private Methods
 
-        // Convert mouse screen position to world position
-        Vector3 mouseWorldPos = _mainCamera.ScreenToWorldPoint(_mousePosition);
-        mouseWorldPos.z = 0f; // Ensure z is flat for 2D
+	private void InitializeDependencies()
+	{
+		_mainCamera = Camera.main;
+		if (_mainCamera == null)
+		{
+			Debug.LogError($"{nameof(PlayerControls)}: Main Camera not found! Rotation will not work.");
+		}
 
-        Vector2 direction = (Vector3)mouseWorldPos - transform.position;
+		if (_rigidbody == null)
+		{
+			// Try to get it automatically if forgot to assign in inspector
+			_rigidbody = GetComponent<Rigidbody2D>();
 
-        float targetAngle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-        
-        targetAngle -= 90f;
+			if (_rigidbody == null)
+			{
+				Debug.LogError($"{nameof(PlayerControls)}: Rigidbody2D reference is missing.");
+			}
+		}
 
-        // Smoothly rotate towards the target angle
-        Quaternion targetRotation = Quaternion.Euler(0, 0, targetAngle);
-        transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, _rotationSpeed * Time.fixedDeltaTime);
-    }
+		InputActionAsset actions = InputSystem.actions;
+		if (actions != null)
+		{
+			_moveAction = actions.FindAction("Move");
+			if (_moveAction == null)
+			{
+				Debug.LogError($"{nameof(PlayerControls)}: Could not find an Input Action named 'Move'.");
+			}
+		}
+		else
+		{
+			Debug.LogError($"{nameof(PlayerControls)}: PlayerInput component is missing.");
+		}
+	}
+
+	private void ReadInput()
+	{
+		if (_moveAction != null)
+		{
+			_currentMoveInput = _moveAction.ReadValue<Vector2>();
+		}
+
+		if (Mouse.current != null)
+		{
+			_mousePosition = Mouse.current.position.ReadValue();
+		}
+	}
+
+	private void HandleMovement()
+	{
+		if (_rigidbody == null)
+			return;
+
+		// Calculate target position based on input
+		Vector2 displacement = _currentMoveInput * _moveSpeed * Time.fixedDeltaTime;
+		Vector2 targetPosition = _rigidbody.position + displacement;
+
+		_rigidbody.MovePosition(targetPosition);
+	}
+
+	private void HandleRotation()
+	{
+		if (_rigidbody == null || _mainCamera == null)
+			return;
+
+		// Convert mouse screen position to world position
+		Vector3 mouseWorldPos = _mainCamera.ScreenToWorldPoint(_mousePosition);
+		mouseWorldPos.z = 0f; // Ensure z is flat for 2D
+
+		Vector2 direction = (Vector3) mouseWorldPos - transform.position;
+
+		float targetAngle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+
+		targetAngle -= 90f;
+
+		// Smoothly rotate towards the target angle
+		Quaternion targetRotation = Quaternion.Euler(0, 0, targetAngle);
+		transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, _rotationSpeed * Time.fixedDeltaTime);
+	}
+
+	#endregion
 }
