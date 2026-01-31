@@ -24,6 +24,13 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void RestartLevel()
+    {
+        // TODO: "you died" screen with delay
+        string currentSceneName = SceneManager.GetActiveScene().name;
+        SceneManager.LoadScene(currentSceneName);
+    }
+
     public void ReturnToMainMenu()
     {
         _curLevel = 0;

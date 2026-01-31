@@ -50,6 +50,8 @@ namespace Runtime
 
         void FixedUpdate()
         {
+            if(IsPossessed) return;
+            
             UpdateTarget();
 
             if(UpdateRotation())
