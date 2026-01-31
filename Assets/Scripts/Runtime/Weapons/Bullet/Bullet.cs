@@ -10,17 +10,14 @@ public class Bullet : MonoBehaviour
 
     private Rigidbody2D mRigidBody;
 
-    public void SetDamage(float damage)
-    {
-        mDamage = damage;
-    }
+    private GameObject mCreator;
 
-    public void Fire(Vector2 direction, float velocity)
+    public void InitializeBulletData(Vector2 direction, float velocity = 100, float damage = 5, GameObject creator = null)
     {
         mDir = direction;
         mVelocity = velocity;
-
-        Debug.Log("FIRING WITH: " + mVelocity + " AND " + mDir);
+        mDamage = damage;
+        mCreator = creator;
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -49,16 +46,16 @@ public class Bullet : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-
-        DamageController damageController = other.gameObject.GetComponent<DamageController>();
-
-        if(damageController)
+        if (other.gameObject != mCreator) // dont hit self while moving
         {
-            Debug.Log("deal damage");
-            damageController.TakeDamage(mDamage);
-        }
+            DamageController damageController = other.gameObject.GetComponent<DamageController>();
 
-        Destroy(gameObject);
-        
+            if(damageController)
+            {
+                damageController.TakeDamage(mDamage);
+            }
+
+            Destroy(gameObject);
+        }
     }
 }
