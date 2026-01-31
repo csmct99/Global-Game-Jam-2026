@@ -21,7 +21,7 @@ public class DamageController : MonoBehaviour
 
             if(agent.IsPossessed)
             {
-                GameManager._gameManager.RestartLevel();
+                GameManager.Instance.RestartLevel();
             }
 
             Destroy(gameObject); // remove this when death state is setup

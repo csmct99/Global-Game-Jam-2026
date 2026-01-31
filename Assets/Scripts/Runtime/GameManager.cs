@@ -6,7 +6,21 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    public static GameManager _gameManager;
+    private static GameManager _instance;
+    public static GameManager Instance
+    {
+        get
+        {
+            if (_instance == null)
+            {
+                GameObject go = Resources.Load<GameObject>("GameManager");
+                _instance = go.GetComponent<GameManager>();
+                DontDestroyOnLoad(go);
+            }
+            
+            return _instance;
+        }
+    }
 
     [SerializeField] private List<String> _scenes;
 
@@ -35,18 +49,5 @@ public class GameManager : MonoBehaviour
     {
         _curLevel = 0;
         SceneManager.LoadSceneAsync(_scenes[_curLevel]);
-    }
-
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        _gameManager = this;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

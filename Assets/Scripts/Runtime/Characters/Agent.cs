@@ -54,7 +54,7 @@ namespace Runtime
             PlayerControls playerControls = gameObject.AddComponent<PlayerControls>();
             playerControls.Initialize(_moveSpeed, _rotationSpeed, _rigidbody, this);
 
-            GameManager._gameManager.possessedAgent = this;
+            GameManager.Instance.possessedAgent = this;
 		}
 
 		public virtual void ConfigureRigidbodyForPossession(Rigidbody2D rb, bool isPossessed)
@@ -75,7 +75,7 @@ namespace Runtime
 			_isPossessed = false;
 
             ToggleWeaponFire(false); // prevent auto fire after leaving
-            GameManager._gameManager.possessedAgent = null;
+            GameManager.Instance.possessedAgent = null;
 		}
 
 
