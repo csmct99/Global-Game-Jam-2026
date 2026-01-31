@@ -81,7 +81,8 @@ namespace Runtime
 		private AudioClip[] enemyScreams;
 		[SerializeField]
 		private AudioClip enemyDeath;
-		private AudioClip maskSqueal
+
+		private AudioClip maskSqueal;
 		
 		public GameObject audioInstance;
 
