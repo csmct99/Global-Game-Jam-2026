@@ -486,10 +486,21 @@
                 {
                     "name": "",
                     "id": "c74ac897-489e-48df-9114-4407f4cce5eb",
-                    "path": "<Keyboard>/f",
+                    "path": "<Mouse>/rightButton",
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
+                    "action": "ThrowMask",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "19306a7e-fbbe-42d0-b8cf-3c585b7c8a21",
+                    "path": "<Keyboard>/f",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
                     "action": "ThrowMask",
                     "isComposite": false,
                     "isPartOfComposite": false
