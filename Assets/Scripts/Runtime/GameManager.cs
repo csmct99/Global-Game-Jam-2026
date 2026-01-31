@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Runtime;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -10,6 +11,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private List<String> _scenes;
 
     private int _curLevel = 0;
+
+    public Agent possessedAgent;
 
 
     public void LoadNextLevel()
