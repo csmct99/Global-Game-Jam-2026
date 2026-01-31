@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Serialization;
 
 public class PlayerControls : MonoBehaviour
 {
@@ -12,7 +13,7 @@ public class PlayerControls : MonoBehaviour
 
     [Header("Dependencies")]
     [Tooltip("The Rigidbody2D component used for movement. Must be set to Kinematic.")]
-    [SerializeField] private Rigidbody2D _rb;
+    [SerializeField] private Rigidbody2D _rigidbody;
 
     private Camera _mainCamera;
     private InputAction _moveAction;
@@ -44,19 +45,19 @@ public class PlayerControls : MonoBehaviour
             Debug.LogError($"{nameof(PlayerControls)}: Main Camera not found! Rotation will not work.");
         }
 
-        if (_rb == null)
+        if (_rigidbody == null)
         {
             // Try to get it automatically if forgot to assign in inspector
-            _rb = GetComponent<Rigidbody2D>();
+            _rigidbody = GetComponent<Rigidbody2D>();
             
-            if (_rb == null)
+            if (_rigidbody == null)
             {
                 Debug.LogError($"{nameof(PlayerControls)}: Rigidbody2D reference is missing.");
             }
         }
 
         // Verify Rigidbody settings
-        if (_rb != null && _rb.bodyType != RigidbodyType2D.Kinematic)
+        if (_rigidbody != null && _rigidbody.bodyType != RigidbodyType2D.Kinematic)
         {
             Debug.LogWarning($"{nameof(PlayerControls)}: Rigidbody2D should be set to 'Kinematic' for this controller.");
         }
@@ -92,18 +93,18 @@ public class PlayerControls : MonoBehaviour
 
     private void HandleMovement()
     {
-        if (_rb == null) return;
+        if (_rigidbody == null) return;
 
         // Calculate target position based on input
         Vector2 displacement = _currentMoveInput * _moveSpeed * Time.fixedDeltaTime;
-        Vector2 targetPosition = _rb.position + displacement;
+        Vector2 targetPosition = _rigidbody.position + displacement;
 
-        _rb.MovePosition(targetPosition);
+        _rigidbody.MovePosition(targetPosition);
     }
 
     private void HandleRotation()
     {
-        if (_rb == null || _mainCamera == null) return;
+        if (_rigidbody == null || _mainCamera == null) return;
 
         // Convert mouse screen position to world position
         Vector3 mouseWorldPos = _mainCamera.ScreenToWorldPoint(_mousePosition);

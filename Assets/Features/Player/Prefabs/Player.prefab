@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 9004122366926284500}
   - component: {fileID: 2003453159930321951}
   - component: {fileID: 1544434164589130616}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -46,9 +46,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6714acfde993c174a9fb9b863f47dae8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerControls
-  _moveSpeed: 5
+  _moveSpeed: 7.5
   _rotationSpeed: 720
-  _rb: {fileID: 1544434164589130616}
+  _rigidbody: {fileID: 1544434164589130616}
 --- !u!50 &1544434164589130616
 Rigidbody2D:
   serializedVersion: 5
@@ -86,7 +86,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1846837025328135697}
   - component: {fileID: 5671144248842918057}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Forward Arrow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -153,8 +153,8 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1304883587
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 75f5f34dc1b5347e0b8351032682f224, type: 3}
@@ -177,7 +177,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8560698485154466026}
   - component: {fileID: 2100295634809072057}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -244,8 +244,8 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1304883587
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
@@ -267,7 +267,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8378144966088712118}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Visuals
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -38,8 +38,26 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Background
+    uniqueID: 3696382213
+    locked: 0
+  - name: Floor
+    uniqueID: 344756285
+    locked: 0
+  - name: VFX_Low
+    uniqueID: 1951108367
+    locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Characters
+    uniqueID: 1304883587
+    locked: 0
+  - name: VFX_High
+    uniqueID: 3727908197
+    locked: 0
+  - name: Foreground
+    uniqueID: 2265864877
     locked: 0
   m_RenderingLayers:
   - Default
