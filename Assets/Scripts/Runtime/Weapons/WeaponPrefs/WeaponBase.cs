@@ -46,7 +46,7 @@ public class WeaponBase : MonoBehaviour
     void Update()
     {
         float timeToBullet = 60.0f / mFireRate;
-        Debug.Log(timeToBullet);
+        
         if(mCurTime < timeToBullet) mCurTime += Time.deltaTime;
 
         if(mCurState == FireState.FIRING && mAmmoLeft > 0)

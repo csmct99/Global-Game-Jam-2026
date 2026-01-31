@@ -10,6 +10,7 @@ namespace Runtime
 		#region Protected Fields
 
 		protected bool _isPossessed = false;
+        [SerializeField] private WeaponBase _weapon;
 
 		[Header("Settings")]
 		[Tooltip("Movement speed in units per second.")]
@@ -25,10 +26,10 @@ namespace Runtime
 		[SerializeField]
 		protected Rigidbody2D _rigidbody;
 
+
 		#endregion
 
 		#region Properties
-
 		public bool IsPossessed => _isPossessed;
 
 		#endregion
@@ -50,8 +51,8 @@ namespace Runtime
 
 			ConfigureRigidbodyForPossession(_rigidbody, true);
 
-			PlayerControls playerControls = gameObject.AddComponent<PlayerControls>();
-			playerControls.Initialize(_moveSpeed, _rotationSpeed, _rigidbody);
+            PlayerControls playerControls = gameObject.AddComponent<PlayerControls>();
+            playerControls.Initialize(_moveSpeed, _rotationSpeed, _rigidbody, this);
 		}
 
 		public virtual void ConfigureRigidbodyForPossession(Rigidbody2D rb, bool isPossessed)
@@ -70,8 +71,20 @@ namespace Runtime
 			Destroy(playerControls);
 
 			_isPossessed = false;
+
+            ToggleWeaponFire(false); // prevent auto fire after leaving
 		}
 
+
+        public void ToggleWeaponFire(bool fire)
+        {
+            if(_weapon != null)
+            {
+                _weapon.toggleFire(fire);
+            }
+        }
+
 		#endregion
-	}
+
+    }
 }

@@ -1,3 +1,4 @@
+using Runtime;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -5,14 +6,19 @@ public class PlayerControls : MonoBehaviour
 {
 	#region Private Fields
 
+
 	private Camera _mainCamera;
 	private InputAction _moveAction;
 	private Vector2 _currentMoveInput;
 	private Vector2 _mousePosition;
+    private InputAction _attackAction;
+    private float _curAttackInput;
 
-	private float _moveSpeed;
-	private float _rotationSpeed;
-	private Rigidbody2D _rigidbody;
+    private float _moveSpeed;
+    private float _rotationSpeed;
+    private Rigidbody2D _rigidbody;
+    private Agent _agent;
+    
 
 	#endregion
 
@@ -32,16 +38,18 @@ public class PlayerControls : MonoBehaviour
 
 	#endregion
 
+
 	#region Public Methods
 
-	public void Initialize(float moveSpeed, float rotationSpeed, Rigidbody2D rigidbody)
-	{
-		_moveSpeed = moveSpeed;
-		_rotationSpeed = rotationSpeed;
-		_rigidbody = rigidbody;
-
-		InitializeDependencies();
-	}
+    public void Initialize(float moveSpeed, float rotationSpeed, Rigidbody2D rigidbody, Agent agent)
+    {
+        _moveSpeed = moveSpeed;
+        _rotationSpeed = rotationSpeed;
+        _rigidbody = rigidbody;
+        _agent = agent;
+        
+        InitializeDependencies();
+    }
 
 	#endregion
 
@@ -74,6 +82,12 @@ public class PlayerControls : MonoBehaviour
 			{
 				Debug.LogError($"{nameof(PlayerControls)}: Could not find an Input Action named 'Move'.");
 			}
+
+			_attackAction = actions.FindAction("Attack");
+			if (_attackAction == null)
+			{
+				Debug.LogError($"{nameof(PlayerControls)}: Could not find an Input Action named 'Attack'.");
+			}
 		}
 		else
 		{
@@ -87,6 +101,18 @@ public class PlayerControls : MonoBehaviour
 		{
 			_currentMoveInput = _moveAction.ReadValue<Vector2>();
 		}
+
+        if (_attackAction != null)
+        {
+            float oldAttackInput = _curAttackInput;
+            float newAttackInput = _attackAction.ReadValue<float>();
+
+            if(oldAttackInput != newAttackInput)
+            {
+                _agent.ToggleWeaponFire(newAttackInput == 1);
+                _curAttackInput = newAttackInput;
+            }
+        }
 
 		if (Mouse.current != null)
 		{
