@@ -105,15 +105,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1186523ec6a5b4f49aba67b4654193cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Shotgun
-  mDamage: 1
-  mBulletVelocity: 20
-  mFireRate: 45
+  mDamage: 4
+  mBulletVelocity: 30
+  mFireRate: 60
   mBulletPrefab: {fileID: 5751854089035933097, guid: 869e19db802d24fb09c5aa0530653d44, type: 3}
   mFirePosition: {fileID: 3362299290924643097}
-  mMaxAmmo: 20
+  mMaxAmmo: 3
   gunRevolverFire: {fileID: 0}
+  gunRevolverEmpty: {fileID: 0}
   mNumPellets: 7
-  mSpreadAngle: 30
+  mSpreadAngle: 40
+  shotgunEmpty: {fileID: 8300000, guid: 755edf6dae9be9846a9f644daedfc68d, type: 3}
+  gunShotgunFire: {fileID: 8300000, guid: ba35306a1c6d84d82918c920483b7c32, type: 3}
 --- !u!1 &3362299290924643097
 GameObject:
   m_ObjectHideFlags: 0

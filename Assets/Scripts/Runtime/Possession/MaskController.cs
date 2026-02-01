@@ -6,6 +6,7 @@ using UnityEngine;
 using UnityEngine.Animations;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
+using UnityEngine.Rendering;
 using UnityEngine.Serialization;
 
 using Random = UnityEngine.Random;
@@ -68,6 +69,16 @@ namespace Runtime
 		private float _currentDeceleration; // Calculated per throw
 
 		private float _recoveryEnterTime;
+		
+		[Header("Visuals")]	
+		[SerializeField]
+		private Volume _damageIndicatorVolume; 
+		
+		[SerializeField]
+		private float _damageEffectFadeFactor = 0.5f;
+		
+		[SerializeField]
+		private float _damageEffectFadeInSpeedInSeconds = 0.25f;
 
 		[Header("Recovery")]
 		[SerializeField]
@@ -152,6 +163,18 @@ namespace Runtime
 			}
 
 			CheckForStoppedThrow();
+
+			if (_currentPossessedTarget != null && _damageController != null && Math.Abs(_damageIndicatorVolume.weight - (1-_damageController.HealthAsPercent)) > 0.01f)
+			{
+				_damageIndicatorVolume.weight = Mathf.MoveTowards(_damageIndicatorVolume.weight, 1-_damageController.HealthAsPercent, Time.deltaTime / _damageEffectFadeInSpeedInSeconds);
+			}
+			else
+			{
+				if (_damageIndicatorVolume != null && _damageIndicatorVolume.weight != 0)
+				{
+					_damageIndicatorVolume.weight = Mathf.MoveTowards(_damageIndicatorVolume.weight, 0, Time.deltaTime / _damageEffectFadeFactor);
+				}
+			}
 		}
 
 		private void FixedUpdate()
