@@ -84,6 +84,26 @@ namespace Runtime
             }
         }
 
+		public int GetCurAmmo()
+		{
+			if(_weapon != null)
+			{
+				return _weapon.GetCurAmmo();
+			}
+
+			return 0;
+		}
+
+		public int GetMaxAmmo()
+		{
+			if(_weapon != null)
+			{
+				return _weapon.GetMaxAmmo();
+			}
+
+			return 0;
+		}
+
 		#endregion
     }
 }

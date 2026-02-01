@@ -374,6 +374,19 @@ namespace Runtime
 				LockInputs();
 			
 			_possessionsCount++;
+
+
+			if(_currentPossessedTarget != null)
+			{
+				Agent possessedAgent = _currentPossessedTarget.GetGameObject().GetComponent<Agent>();
+				if(possessedAgent != null)
+				{
+					int curAmmo = possessedAgent.GetCurAmmo();
+					int maxAmmo = possessedAgent.GetMaxAmmo();
+
+					GameManager.Instance.UpdateAmmoState(curAmmo, maxAmmo);
+				}
+			}
 		}
 
 		private void DePossess()
@@ -414,6 +427,8 @@ namespace Runtime
 			UnlockInputs();
 
 			ThrowMaskAtCursor();
+
+			GameManager.Instance.DisableAmmoUI();
 		}
 
 		private void SetCollisionState(bool allowCollisions)
@@ -428,6 +443,7 @@ namespace Runtime
 		{
 			if (!_isInRecovery)
 			{
+				// TODO: noah put scream sound here
 				_recoveryEnterTime = Time.time;
 				_isInRecovery = true;
 			}
@@ -437,6 +453,8 @@ namespace Runtime
 		{
 			if (!_isInRecovery)
 				return;
+
+				// TODO: noah remove scream here if needed
 
 			_isInRecovery = false;
 			_recoveryEnterTime = -1f;
