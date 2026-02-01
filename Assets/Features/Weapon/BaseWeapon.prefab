@@ -112,6 +112,7 @@ MonoBehaviour:
   mFirePosition: {fileID: 3362299290924643097}
   mMaxAmmo: 10
   gunRevolverFire: {fileID: 8300000, guid: 57235a30092bb4867a91e65cf70a0723, type: 3}
+  gunRevolverEmpty: {fileID: 8300000, guid: 755edf6dae9be9846a9f644daedfc68d, type: 3}
 --- !u!1 &3362299290924643097
 GameObject:
   m_ObjectHideFlags: 0
