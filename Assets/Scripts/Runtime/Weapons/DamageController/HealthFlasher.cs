@@ -44,7 +44,7 @@ public class HealthFlasher : MonoBehaviour
 	private void Awake()
 	{
 		_startColor = _spriteRenderer.color;
-		_flashHighColor = Color.Lerp(_startColor, _flashHighColor, 0.5f);
+		_flashHighColor = Color.Lerp(_startColor, _flashHighColor, 0.8f);
 
 		_damageController.OnTookDamage += OnTookDamage;
 		_damageController.OnHealthChanged += OnHealthChanged;
