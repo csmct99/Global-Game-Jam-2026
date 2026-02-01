@@ -1,12 +1,3 @@
-// SelectRandomSprite.cs
-// 
-// Description:
-// 
-// Author:
-//  xxxcs
-// 
-// Copyright (C) Budge Studios Inc., 2026
-
 using System;
 using System.Collections.Generic;
 
