@@ -1,14 +1,41 @@
 using System;
 using System.Collections.Generic;
+
 using Runtime;
+
 using UnityEngine;
 using UnityEngine.SceneManagement;
+
 using Tymski;
+
 using TMPro;
 
 public class GameManager : MonoBehaviour
-{ 
+{
+	#region Public Fields
+
+	public Agent possessedAgent;
+
+	#endregion
+
+	#region Private Fields
+
 	private static GameManager _instance;
+
+	[SerializeField]
+	private List<SceneReference> _sceneLoadOrder;
+
+	[SerializeField]
+	private TMP_Text _ammoTextObj;
+
+	private int _curLevel = 0;
+
+	private int enemyCount = 0;
+
+	#endregion
+
+	#region Properties
+
 	public static GameManager Instance
 	{
 		get
@@ -19,25 +46,49 @@ public class GameManager : MonoBehaviour
 				_instance = go.GetComponent<GameManager>();
 				DontDestroyOnLoad(go);
 			}
-            
+
 			return _instance;
 		}
 	}
 
-	[SerializeField] private List<SceneReference> _sceneLoadOrder;
-	[SerializeField] private TMP_Text _ammoTextObj;
+	#endregion
 
-	private int _curLevel = 0;
+	#region MonoBehaviour Methods
 
-	public Agent possessedAgent;
+	void Awake()
+	{
+		enemyCount = 0;
 
-	private int enemyCount = 0;
+		AdjustToCorrectScene();
+	}
+
+	#endregion
+
+	#region Public Methods
+
+	public void DisableAmmoUI()
+	{
+		if (_ammoTextObj != null)
+		{
+			_ammoTextObj.text = "";
+		}
+	}
+
+	public void LoadNextLevel()
+	{
+		if (_curLevel + 1 < _sceneLoadOrder.Count)
+		{
+			_curLevel++;
+			enemyCount = 0;
+			SceneManager.LoadSceneAsync(_sceneLoadOrder[_curLevel].ScenePath);
+		}
+	}
 
 	public void NotifyEnemyKilled()
 	{
 		enemyCount--;
 
-		if(enemyCount <= 0)
+		if (enemyCount <= 0)
 		{
 			Invoke(nameof(LoadNextLevel), 0.75f); // Short delay to start level
 		}
@@ -46,16 +97,6 @@ public class GameManager : MonoBehaviour
 	public void RegisterEnemySpawn()
 	{
 		enemyCount++;
-	}
-
-	public void LoadNextLevel()
-	{
-		if(_curLevel + 1 < _sceneLoadOrder.Count)
-		{
-			_curLevel++;
-			enemyCount = 0;
-			SceneManager.LoadSceneAsync(_sceneLoadOrder[_curLevel].ScenePath);
-		}
 	}
 
 	public void RestartLevel()
@@ -72,17 +113,23 @@ public class GameManager : MonoBehaviour
 		SceneManager.LoadSceneAsync(_sceneLoadOrder[_curLevel].ScenePath);
 	}
 
-	void Awake()
+	public void UpdateAmmoState(int curAmmo, int maxAmmo)
 	{
-		enemyCount = 0;
-
-		AdjustToCorrectScene();
+		if (_ammoTextObj != null)
+		{
+			_ammoTextObj.text = curAmmo + " / " + maxAmmo;
+			_ammoTextObj.enabled = true;
+		}
 	}
+
+	#endregion
+
+	#region Private Methods
 
 	private void AdjustToCorrectScene()
 	{
 		Scene currentScene = SceneManager.GetActiveScene();
-		
+
 		bool wrongLevel = _curLevel >= _sceneLoadOrder.Count || currentScene.path != _sceneLoadOrder[_curLevel].ScenePath;
 		if (wrongLevel)
 		{
@@ -99,21 +146,5 @@ public class GameManager : MonoBehaviour
 		}
 	}
 
-    public void UpdateAmmoState(int curAmmo, int maxAmmo)
-    {
-        if(_ammoTextObj != null)
-        {
-            _ammoTextObj.text = curAmmo + " / " + maxAmmo;
-            _ammoTextObj.enabled = true;
-        }
-    }
-
-    public void DisableAmmoUI()
-    {
-        
-        if(_ammoTextObj != null)
-        {
-            _ammoTextObj.text = "";
-        }
-    }
+	#endregion
 }

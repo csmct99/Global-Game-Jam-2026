@@ -2,5 +2,9 @@ using UnityEngine;
 
 public class Key : MonoBehaviour
 {
-    public string KeyCode;
+	#region Public Fields
+
+	public string KeyCode;
+
+	#endregion
 }

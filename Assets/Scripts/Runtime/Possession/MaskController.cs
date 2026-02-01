@@ -69,14 +69,14 @@ namespace Runtime
 		private float _currentDeceleration; // Calculated per throw
 
 		private float _recoveryEnterTime;
-		
-		[Header("Visuals")]	
+
+		[Header("Visuals")]
 		[SerializeField]
-		private Volume _damageIndicatorVolume; 
-		
+		private Volume _damageIndicatorVolume;
+
 		[SerializeField]
 		private float _damageEffectFadeFactor = 0.5f;
-		
+
 		[SerializeField]
 		private float _damageEffectFadeInSpeedInSeconds = 0.25f;
 
@@ -164,9 +164,9 @@ namespace Runtime
 
 			CheckForStoppedThrow();
 
-			if (_currentPossessedTarget != null && _damageController != null && Math.Abs(_damageIndicatorVolume.weight - (1-_damageController.HealthAsPercent)) > 0.01f)
+			if (_currentPossessedTarget != null && _damageController != null && Math.Abs(_damageIndicatorVolume.weight - (1 - _damageController.HealthAsPercent)) > 0.01f)
 			{
-				_damageIndicatorVolume.weight = Mathf.MoveTowards(_damageIndicatorVolume.weight, 1-_damageController.HealthAsPercent, Time.deltaTime / _damageEffectFadeInSpeedInSeconds);
+				_damageIndicatorVolume.weight = Mathf.MoveTowards(_damageIndicatorVolume.weight, 1 - _damageController.HealthAsPercent, Time.deltaTime / _damageEffectFadeInSpeedInSeconds);
 			}
 			else
 			{
@@ -340,7 +340,6 @@ namespace Runtime
 				throw new Exception("Tried to possess when we already have a possession active!");
 			}
 
-
 			target.BeginPossess(this);
 			_currentPossessedTarget = target;
 
@@ -372,14 +371,13 @@ namespace Runtime
 			// Lock inputs for stun
 			if (willStun && _possessionsCount > 0)
 				LockInputs();
-			
+
 			_possessionsCount++;
 
-
-			if(_currentPossessedTarget != null)
+			if (_currentPossessedTarget != null)
 			{
 				Agent possessedAgent = _currentPossessedTarget.GetGameObject().GetComponent<Agent>();
-				if(possessedAgent != null)
+				if (possessedAgent != null)
 				{
 					int curAmmo = possessedAgent.GetCurAmmo();
 					int maxAmmo = possessedAgent.GetMaxAmmo();
@@ -454,7 +452,7 @@ namespace Runtime
 			if (!_isInRecovery)
 				return;
 
-				// TODO: noah remove scream here if needed
+			// TODO: noah remove scream here if needed
 
 			_isInRecovery = false;
 			_recoveryEnterTime = -1f;
