@@ -117,12 +117,15 @@ namespace Runtime
 
 		private DamageController _damageController;
 
+		private int _possessionsCount = 0;
+
 		#endregion
 
 		#region MonoBehaviour Methods
 
 		private void Awake()
 		{
+			_possessionsCount = 0;
 			RefreshThrows();
 			SetupInputs();
 			UnlockInputs();
@@ -314,6 +317,7 @@ namespace Runtime
 				throw new Exception("Tried to possess when we already have a possession active!");
 			}
 
+
 			target.BeginPossess(this);
 			_currentPossessedTarget = target;
 
@@ -343,8 +347,10 @@ namespace Runtime
 			audioInstance = SoundFXManager.Instance.PlayRandomSoundFXClip(enemyScreams, transform, 1.3f);
 
 			// Lock inputs for stun
-			if (willStun)
+			if (willStun && _possessionsCount > 0)
 				LockInputs();
+			
+			_possessionsCount++;
 		}
 
 		private void DePossess()
