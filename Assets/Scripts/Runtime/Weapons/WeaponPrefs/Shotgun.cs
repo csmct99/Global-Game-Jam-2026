@@ -14,30 +14,37 @@ public class Shotgun : WeaponBase
 
         if(mCurTime > timeToBullet)
         {
-            Vector2 firePos = transform.position;
-            if(mFirePosition != null)
+            if(mAmmoLeft > 0)
             {
-                firePos = mFirePosition.transform.position;
-            }
+                Vector2 firePos = transform.position;
+                if(mFirePosition != null)
+                {
+                    firePos = mFirePosition.transform.position;
+                }
 
-            for(int i = 0; i < mNumPellets; i++)
+                for(int i = 0; i < mNumPellets; i++)
+                {
+                    Quaternion rotationAngleAxis = Quaternion.AngleAxis(-mSpreadAngle/2 + mSpreadAngle/mNumPellets * i, Vector3.forward);
+                    Vector3 initDir = rotationAngleAxis * transform.up;
+                    
+                    GameObject bulletObj = Instantiate(mBulletPrefab, (Vector3)firePos, Quaternion.identity);
+
+                    bulletObj.transform.up = initDir;
+                    
+                    Bullet firedBullet = bulletObj.GetComponent<Bullet>();
+                    firedBullet.InitializeBulletData(initDir, mBulletVelocity, mDamage, transform.root.gameObject);
+                }
+
+
+                if (mConsumeAmmo)
+                {
+                    mAmmoLeft -= 1;
+                }
+
+            } else
             {
-                Quaternion rotationAngleAxis = Quaternion.AngleAxis(-mSpreadAngle/2 + mSpreadAngle/mNumPellets * i, Vector3.forward);
-                Vector3 initDir = rotationAngleAxis * transform.up;
-                
-                GameObject bulletObj = Instantiate(mBulletPrefab, (Vector3)firePos, Quaternion.identity);
-
-                bulletObj.transform.up = initDir;
-                
-                Bullet firedBullet = bulletObj.GetComponent<Bullet>();
-                firedBullet.InitializeBulletData(initDir, mBulletVelocity, mDamage, transform.root.gameObject);
+                //TODO: Noah put empty gun shot sound here
             }
-
-
-			if (mConsumeAmmo)
-			{
-				mAmmoLeft -= 1;
-			}
 			
             mCurTime -= timeToBullet;
         }
