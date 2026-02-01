@@ -57,6 +57,8 @@ MonoBehaviour:
     scenePath: Assets/Features/Levels/Level_4.unity
   - sceneAsset: {fileID: 102900000, guid: 0cc47dbc397ab134cb6d97f650f74c51, type: 3}
     scenePath: Assets/Features/Levels/Level_5.unity
+  - sceneAsset: {fileID: 102900000, guid: 5993c4b74c96a8f439753e93d2f75e63, type: 3}
+    scenePath: Assets/Features/Levels/Level_6.unity
   - sceneAsset: {fileID: 102900000, guid: 07153e473dc9e894893e6f0b6145446a, type: 3}
     scenePath: Assets/Features/MainMenu/Scenes/Main Menu.unity
   possessedAgent: {fileID: 0}
