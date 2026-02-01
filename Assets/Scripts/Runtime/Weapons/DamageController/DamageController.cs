@@ -42,7 +42,24 @@ public class DamageController : MonoBehaviour
 
     public void ToggleInvuln(bool invuln)
     {
+        Debug.Log($"INVLUN: {invuln}");
         mInvuln = invuln;
+    }
+    
+    public void EnableInvlun()
+    {
+        ToggleInvuln(true);
+    }
+    
+    public void DisableInvlun()
+    {
+        ToggleInvuln(false);
+    }
+    
+    public void MakeInvulnerableForSeconds(float seconds)
+    {
+        ToggleInvuln(true);
+        Invoke(nameof(DisableInvlun), seconds);
     }
 
     private bool dying = false;

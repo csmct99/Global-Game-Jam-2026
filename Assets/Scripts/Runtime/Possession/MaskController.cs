@@ -14,6 +14,12 @@ namespace Runtime
 {
 	public class MaskController : MonoBehaviour
 	{
+		#region Public Fields
+
+		public GameObject audioInstance;
+
+		#endregion
+
 		#region Private Fields
 
 		private InputAction _throwMaskInput;
@@ -42,6 +48,9 @@ namespace Runtime
 
 		[SerializeField]
 		private float _healHostAmount = 25.0f;
+
+		[SerializeField]
+		private float _invulnTimeAfterStunPosses = 0.5f;
 
 		[Header("Throws")]
 		[SerializeField]
@@ -76,20 +85,22 @@ namespace Runtime
 
 		[SerializeField]
 		private UnityEvent _onInputsUnlocked;
-		
+
 		[Header("SoundFX")]
 		[SerializeField]
 		private AudioClip enemyHurt;
+
 		[SerializeField]
 		private AudioClip[] enemyScreams;
+
 		[SerializeField]
 		private AudioClip enemyDeath;
+
 		[SerializeField]
 		private AudioClip maskSqueal;
+
 		[SerializeField]
 		private AudioClip maskLeap;
-		
-		public GameObject audioInstance;
 
 		private float _inputLockTimestamp;
 		private bool _isInputLocked = false;
@@ -114,6 +125,7 @@ namespace Runtime
 		{
 			RefreshThrows();
 			SetupInputs();
+			UnlockInputs();
 		}
 
 		private void Update()
@@ -198,7 +210,8 @@ namespace Runtime
 			_inputLockTimestamp = Time.time;
 
 			_onInputsLocked?.Invoke();
-			if(_damageController != null) _damageController.ToggleInvuln(true);
+			if (_damageController != null)
+				_damageController.MakeInvulnerableForSeconds(_invulnTimeAfterStunPosses);
 		}
 
 		private void UnlockInputs()
@@ -209,7 +222,8 @@ namespace Runtime
 			_isInputLocked = false;
 
 			_onInputsUnlocked?.Invoke();
-			if(_damageController != null) _damageController.ToggleInvuln(false);
+			if (_damageController != null)
+				_damageController.ToggleInvuln(false);
 		}
 
 		private void ThrowMaskAtCursor()
@@ -224,19 +238,18 @@ namespace Runtime
 				SoundFXManager.Instance.PlaySoundFXClip(maskLeap, transform, 0.5f);
 			}
 
-
 			Vector2 mouseWorldPos = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
 			_throwDirection = (mouseWorldPos - (Vector2) transform.position).normalized;
 
 			float initialSpeed = (2 * _throwDistance) / _throwDuration * _currentThrowsRemaining / _maxThrowAttempts;
 
 			_currentThrowsRemaining--;
-			
+
 			// Deceleration required to reach 0 speed in exactly _throwDuration
 			_currentDeceleration = initialSpeed / _throwDuration;
 
 			_rigidbody2D.linearVelocity = _throwDirection * initialSpeed;
-			
+
 			ExitRecoveryState();
 		}
 
@@ -267,7 +280,7 @@ namespace Runtime
 			float currentShake = Mathf.Pow(progressToDeath, 2) * _maxShakeIntensity;
 
 			_visualsTransform.localPosition = _originalLocalPos + (Vector3) Random.insideUnitCircle * currentShake;
-			
+
 			if (progressToDeath >= 1f)
 			{
 				_visualsTransform.localPosition = _originalLocalPos;
@@ -307,7 +320,8 @@ namespace Runtime
 			_currentPossessedTarget = target;
 
 			_damageController = _currentPossessedTarget.GetGameObject().GetComponent<DamageController>();
-			if(_damageController != null) _damageController.TakeDamage(-_healHostAmount);
+			if (_damageController != null)
+				_damageController.TakeDamage(-_healHostAmount);
 
 			// Disable mask collider and physics while possessed
 			SetCollisionState(false);
@@ -329,7 +343,7 @@ namespace Runtime
 
 			//Play Random Scream Sound
 			audioInstance = SoundFXManager.Instance.PlayRandomSoundFXClip(enemyScreams, transform, 1.3f);
-			
+
 			// Lock inputs for stun
 			if (willStun)
 				LockInputs();
@@ -342,8 +356,9 @@ namespace Runtime
 				throw new Exception("Tried to de-possess even though we are not currently possessing anything!");
 			}
 
-			if (audioInstance != null) Destroy(audioInstance);
-			
+			if (audioInstance != null)
+				Destroy(audioInstance);
+
 			_currentPossessedTarget.StopPossess(this);
 
 			// Stop following the possessed target
@@ -353,7 +368,8 @@ namespace Runtime
 			// Kill the target
 			// TODO: Make this more interesting than a "delete"
 			DamageController possessedTargetDC = _currentPossessedTarget.GetGameObject().GetComponent<DamageController>();
-			if(possessedTargetDC != null) {
+			if (possessedTargetDC != null)
+			{
 				possessedTargetDC.Kill();
 			}
 
@@ -367,7 +383,6 @@ namespace Runtime
 
 			// Give throws back
 			RefreshThrows();
-			
 
 			UnlockInputs();
 
