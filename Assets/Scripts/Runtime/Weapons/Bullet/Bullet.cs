@@ -26,12 +26,11 @@ public class Bullet : MonoBehaviour
 		mRigidBody = GetComponent<Rigidbody2D>();
 	}
 
-	// Update is called once per frame
-	void Update()
+	void FixedUpdate()
 	{
 		if (mDir.magnitude > 0 && mVelocity > 0)
 		{
-			mRigidBody.MovePosition((Vector2) transform.position + mDir * mVelocity * Time.deltaTime);
+			mRigidBody.MovePosition((Vector2) transform.position + mDir * mVelocity * Time.fixedDeltaTime);
 		}
 
 		mKillTimer -= Time.deltaTime;
