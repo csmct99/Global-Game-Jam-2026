@@ -222,8 +222,6 @@ namespace Runtime
 			_isInputLocked = false;
 
 			_onInputsUnlocked?.Invoke();
-			if (_damageController != null)
-				_damageController.ToggleInvuln(false);
 		}
 
 		private void ThrowMaskAtCursor()
