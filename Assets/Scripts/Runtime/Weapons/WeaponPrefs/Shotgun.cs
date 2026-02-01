@@ -5,7 +5,8 @@ public class Shotgun : WeaponBase
 
     [SerializeField] private int mNumPellets;
     [SerializeField] private float mSpreadAngle;
-
+    [SerializeField] private AudioClip shotgunEmpty;
+    [SerializeField] private AudioClip gunShotgunFire;
     protected override void TryFire()
     {
         float timeToBullet = 60.0f / mFireRate;
@@ -17,6 +18,8 @@ public class Shotgun : WeaponBase
             if(mAmmoLeft > 0)
             {
                 Vector2 firePos = transform.position;
+                //Play gunshot sfx
+                SoundFXManager.Instance.PlaySoundFXClip(gunShotgunFire, transform, 0.6f);
                 if(mFirePosition != null)
                 {
                     firePos = mFirePosition.transform.position;
@@ -44,6 +47,7 @@ public class Shotgun : WeaponBase
             } else
             {
                 //TODO: Noah put empty gun shot sound here
+                SoundFXManager.Instance.PlaySoundFXClip(shotgunEmpty, transform, 1f);
             }
 			
             mCurTime -= timeToBullet;
