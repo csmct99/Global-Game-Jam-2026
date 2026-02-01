@@ -1,6 +1,7 @@
 using System;
 using Runtime;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class DamageController : MonoBehaviour
@@ -13,6 +14,8 @@ public class DamageController : MonoBehaviour
 
     public Action<float> OnTookDamage;
     public Action OnHealthChanged;
+
+    public UnityEvent OnDeath;
     
     private bool mInvuln;
 
@@ -75,6 +78,7 @@ public class DamageController : MonoBehaviour
             
             //Play deathsound
             SoundFXManager.Instance.PlaySoundFXClip(deathSound, transform, 0.3f);
+            OnDeath?.Invoke();
 
             if(agent.IsPossessed) // Possessed, restart level
             {
