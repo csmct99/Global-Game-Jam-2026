@@ -62,6 +62,7 @@ public class DamageController : MonoBehaviour
             }
 
             Destroy(gameObject); // remove this when death state is setup
+            GameManager.Instance.NotifyEnemyKilled();
         }
         else if(mCurHealth > mMaxHealth)
         {

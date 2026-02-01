@@ -44,5 +44,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15956a909c6a342d785d55fbf1f2f2e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
-  _scenes: []
+  _scenes:
+  - Main Menu
+  - Level_1
+  - Level_2
+  - Level_3
+  - Main Menu
   possessedAgent: {fileID: 0}

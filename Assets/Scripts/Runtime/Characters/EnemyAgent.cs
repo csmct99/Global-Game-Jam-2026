@@ -62,6 +62,11 @@ namespace Runtime
             UpdateFiringState();
         }
 
+        void Start()
+        {
+            Debug.Log("start called from agent");
+			GameManager.Instance.RegisterEnemySpawn();
+        }
 
     }
 }
