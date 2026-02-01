@@ -308,6 +308,7 @@ namespace Runtime
 
 			_damageController = _currentPossessedTarget.GetGameObject().GetComponent<DamageController>();
 			if(_damageController != null) _damageController.TakeDamage(-_healHostAmount);
+			Debug.Log($"health on possesion: {_damageController.CurrentHealth}");
 
 			// Disable mask collider and physics while possessed
 			SetCollisionState(false);

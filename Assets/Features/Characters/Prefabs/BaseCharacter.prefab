@@ -87,7 +87,7 @@ MonoBehaviour:
   _moveSpeed: 5
   _rotationSpeed: 720
   _rigidbody: {fileID: 9165417224841664499}
-  mPerceptionDistance: 5
+  mPerceptionDistance: 6
 --- !u!50 &9165417224841664499
 Rigidbody2D:
   serializedVersion: 5
@@ -163,7 +163,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee8fa7f52b347419aa0dcb5da2ea791e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DamageController
-  mMaxHealth: 20
+  mMaxHealth: 6
   hurtSound: {fileID: 8300000, guid: 5d1a9fcfa92d74b5b85f55fac5e5e3a0, type: 3}
   deathSound: {fileID: 8300000, guid: 60d2703e6d3db4d4db127a03fe35fbf4, type: 3}
 --- !u!114 &5443331014275577840
@@ -180,7 +180,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::HealthFlasher
   _damageController: {fileID: 2904476168345119264}
   _spriteRenderer: {fileID: 5176316786969771875}
-  _frequency: 10
+  _frequency: 12
   _flashHighColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &3155086485271466828
 GameObject:
@@ -377,12 +377,16 @@ PrefabInstance:
       value: Weapon
       objectReference: {fileID: 0}
     - target: {fileID: 3021812174559373454, guid: 27f7f57ead94f491fa1f1d60352bbec2, type: 3}
+      propertyPath: mDamage
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3021812174559373454, guid: 27f7f57ead94f491fa1f1d60352bbec2, type: 3}
       propertyPath: mMaxAmmo
-      value: 60
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 3021812174559373454, guid: 27f7f57ead94f491fa1f1d60352bbec2, type: 3}
       propertyPath: mFireRate
-      value: 90
+      value: 120
       objectReference: {fileID: 0}
     - target: {fileID: 3021812174559373454, guid: 27f7f57ead94f491fa1f1d60352bbec2, type: 3}
       propertyPath: gunRevolverFire
@@ -390,7 +394,7 @@ PrefabInstance:
       objectReference: {fileID: 8300000, guid: 57235a30092bb4867a91e65cf70a0723, type: 3}
     - target: {fileID: 3021812174559373454, guid: 27f7f57ead94f491fa1f1d60352bbec2, type: 3}
       propertyPath: mBulletVelocity
-      value: 200
+      value: 150
       objectReference: {fileID: 0}
     - target: {fileID: 4343536227391618198, guid: 27f7f57ead94f491fa1f1d60352bbec2, type: 3}
       propertyPath: m_LocalPosition.x
