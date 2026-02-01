@@ -12,7 +12,7 @@ public class SoundFXManager : MonoBehaviour
         {
             if (_instance == null)
             {
-                GameObject go = Resources.Load<GameObject>("SoundFXManager");
+                GameObject go = Instantiate(Resources.Load<GameObject>("SoundFXManager"), null);
                 DontDestroyOnLoad(go);
                 
                 _instance = go.GetComponent<SoundFXManager>();
