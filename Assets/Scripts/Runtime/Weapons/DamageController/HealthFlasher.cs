@@ -51,7 +51,7 @@ public class HealthFlasher : MonoBehaviour
 
 	private void Update()
 	{
-		if (_damageController.HealthAsPercent < _lowHealthThreshold)
+		if (_damageController.HealthAsPercent <= _lowHealthThreshold)
 		{
 			_spriteRenderer.color = CalculateFlashColor(_startColor);
 		}
