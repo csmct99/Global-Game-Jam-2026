@@ -24,8 +24,6 @@ public class Shotgun : WeaponBase
             {
                 Quaternion rotationAngleAxis = Quaternion.AngleAxis(-mSpreadAngle/2 + mSpreadAngle/mNumPellets * i, Vector3.forward);
                 Vector3 initDir = rotationAngleAxis * transform.up;
-
-                Debug.Log("Rot angle: " + rotationAngleAxis);
                 
                 GameObject bulletObj = Instantiate(mBulletPrefab, (Vector3)firePos, Quaternion.identity);
 
@@ -33,8 +31,6 @@ public class Shotgun : WeaponBase
                 
                 Bullet firedBullet = bulletObj.GetComponent<Bullet>();
                 firedBullet.InitializeBulletData(initDir, mBulletVelocity, mDamage, transform.root.gameObject);
-
-                Debug.Log(initDir + " " + mBulletVelocity);
             }
 
 

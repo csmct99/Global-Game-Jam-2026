@@ -47,7 +47,6 @@ public class Bullet : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        Debug.Log(other.gameObject.name);
         if (other.gameObject != mCreator) // dont hit self while moving
         {
             DamageController damageController = other.gameObject.GetComponent<DamageController>();

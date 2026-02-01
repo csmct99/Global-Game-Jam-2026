@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour
         {
             if (_instance == null)
             {
-                GameObject go = Resources.Load<GameObject>("GameManager");
+                GameObject go = Instantiate(Resources.Load<GameObject>("GameManager"), null);
                 _instance = go.GetComponent<GameManager>();
                 DontDestroyOnLoad(go);
             }
@@ -34,7 +34,6 @@ public class GameManager : MonoBehaviour
     {
         enemyCount--;
 
-            Debug.Log("enemy killed. left: " + enemyCount);
         if(enemyCount == 0)
         {
             LoadNextLevel();
@@ -48,12 +47,10 @@ public class GameManager : MonoBehaviour
 
     public void LoadNextLevel()
     {
-            Debug.Log("trying to load new scene ");
         if(_curLevel + 1 < _scenes.Count)
         {
             _curLevel++;
             SceneManager.LoadSceneAsync(_scenes[_curLevel]);
-            Debug.Log("Loading new level: " + _scenes[_curLevel]);
         }
     }
 
