@@ -29,15 +29,15 @@ public class GameManager : MonoBehaviour
 
 	public Agent possessedAgent;
 
-	private int enemyCount;
+	private int enemyCount = 0;
 
 	public void NotifyEnemyKilled()
 	{
 		enemyCount--;
 
-		if(enemyCount == 0)
+		if(enemyCount <= 0)
 		{
-			LoadNextLevel();
+			Invoke(nameof(LoadNextLevel), 1.5f);
 		}
 	}
 
@@ -51,6 +51,7 @@ public class GameManager : MonoBehaviour
 		if(_curLevel + 1 < _sceneLoadOrder.Count)
 		{
 			_curLevel++;
+			enemyCount = 0;
 			SceneManager.LoadSceneAsync(_sceneLoadOrder[_curLevel].ScenePath);
 		}
 	}
@@ -58,6 +59,7 @@ public class GameManager : MonoBehaviour
 	public void RestartLevel()
 	{
 		// TODO: "you died" screen with delay
+		enemyCount = 0;
 		string currentSceneName = SceneManager.GetActiveScene().name;
 		SceneManager.LoadScene(currentSceneName);
 	}

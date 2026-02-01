@@ -45,11 +45,12 @@ public class DamageController : MonoBehaviour
         mInvuln = invuln;
     }
 
+    private bool dying = false;
     public void TakeDamage(float damage)
     {
-        if(mInvuln) return;
+        if(mInvuln || dying) return;
 
-        mCurHealth = mCurHealth - damage;
+        mCurHealth -= damage;
 
         if (mCurHealth <= 0)
         {
@@ -59,13 +60,16 @@ public class DamageController : MonoBehaviour
             //Play deathsound
             SoundFXManager.Instance.PlaySoundFXClip(deathSound, transform, 0.3f);
 
-            if(agent.IsPossessed)
+            if(agent.IsPossessed) // Possessed, restart level
             {
                 GameManager.Instance.RestartLevel();
             }
-
-            Destroy(gameObject); // remove this when death state is setup
-            GameManager.Instance.NotifyEnemyKilled();
+            else // Not possessed, track the global enemy count
+            {
+                GameManager.Instance.NotifyEnemyKilled();
+                Destroy(gameObject); // remove this when death state is setup
+                dying = true;
+            }
         }
         else if(mCurHealth > mMaxHealth)
         {
