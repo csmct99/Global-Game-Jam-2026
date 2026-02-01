@@ -257,7 +257,7 @@ namespace Runtime
 			}
 			else
 			{
-				SoundFXManager.Instance.PlaySoundFXClip(maskLeap, transform, 0.5f);
+				SoundFXManager.Instance.PlaySoundFXClip(maskLeap, transform, 1f);
 			}
 
 			Vector2 mouseWorldPos = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
@@ -365,7 +365,7 @@ namespace Runtime
 			RefreshThrows();
 
 			//Play Random Scream Sound
-			audioInstance = SoundFXManager.Instance.PlayRandomSoundFXClip(enemyScreams, transform, 1.3f);
+			audioInstance = SoundFXManager.Instance.PlayRandomSoundFXClip(enemyScreams, transform, 6f);
 
 			// Lock inputs for stun
 			if (willStun && _possessionsCount > 0)
