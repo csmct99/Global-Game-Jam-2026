@@ -80,6 +80,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7844769920952133316, guid: bed8dd24e5dd60c49b499be4b135d003, type: 3}
+      propertyPath: KeyCode
+      value: Yellow
+      objectReference: {fileID: 0}
+    - target: {fileID: 8611755688144038805, guid: bed8dd24e5dd60c49b499be4b135d003, type: 3}
+      propertyPath: KeyCode
+      value: Yellow
+      objectReference: {fileID: 0}
     - target: {fileID: 9150790901833434557, guid: bed8dd24e5dd60c49b499be4b135d003, type: 3}
       propertyPath: _weapon
       value: 
@@ -124,7 +132,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -7616276365169951559, guid: e7d85eaa1940344228201e83db279bc7, type: 3}
       propertyPath: mBulletVelocity
-      value: 100
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 1655522961370302748, guid: e7d85eaa1940344228201e83db279bc7, type: 3}
       propertyPath: m_Name

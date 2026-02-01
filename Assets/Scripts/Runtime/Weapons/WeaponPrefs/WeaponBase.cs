@@ -59,16 +59,22 @@ public class WeaponBase : MonoBehaviour
                 firePos = mFirePosition.transform.position;
             }
 
-            GameObject bulletObj = Instantiate(mBulletPrefab, firePos, transform.rotation);
-            //Play gunshot sfx
-            SoundFXManager.Instance.PlaySoundFXClip(gunRevolverFire, transform, 0.1f);
-            
-            Bullet firedBullet = bulletObj.GetComponent<Bullet>();
-            
-            firedBullet.InitializeBulletData(transform.up, mBulletVelocity, mDamage, transform.root.gameObject);
-            if(mConsumeAmmo)
+            if(mAmmoLeft > 0)
             {
-                mAmmoLeft -= 1;
+                GameObject bulletObj = Instantiate(mBulletPrefab, firePos, transform.rotation);
+                //Play gunshot sfx
+                SoundFXManager.Instance.PlaySoundFXClip(gunRevolverFire, transform, 0.1f);
+                
+                Bullet firedBullet = bulletObj.GetComponent<Bullet>();
+                
+                firedBullet.InitializeBulletData(transform.up, mBulletVelocity, mDamage, transform.root.gameObject);
+                if(mConsumeAmmo)
+                {
+                    mAmmoLeft -= 1;
+                }
+            } else
+            {
+                //TODO: Noah put empty gun shot sound here
             }
 
             mLastFireTime = Time.time;
@@ -78,7 +84,7 @@ public class WeaponBase : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(mCurState == FireState.FIRING && mAmmoLeft > 0)
+        if(mCurState == FireState.FIRING)
         {
             
             TryFire();
