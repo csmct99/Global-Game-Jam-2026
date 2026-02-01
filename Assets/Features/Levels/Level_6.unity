@@ -9229,14 +9229,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 7215661262213080304, guid: c9fe5715e568d5a40b51cb2934e35cac, type: 3}
-      propertyPath: maskLeap
-      value: 
-      objectReference: {fileID: 8300000, guid: b2508d815e84e4d54901641c59d2fd4c, type: 3}
-    - target: {fileID: 7215661262213080304, guid: c9fe5715e568d5a40b51cb2934e35cac, type: 3}
-      propertyPath: maskSqueal
-      value: 
-      objectReference: {fileID: 8300000, guid: b2508d815e84e4d54901641c59d2fd4c, type: 3}
-    - target: {fileID: 7215661262213080304, guid: c9fe5715e568d5a40b51cb2934e35cac, type: 3}
       propertyPath: _healthPercentRequiredToPossessWithoutStun
       value: 0.5
       objectReference: {fileID: 0}
