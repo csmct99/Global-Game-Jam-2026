@@ -50,15 +50,6 @@ public class HealthFlasher : MonoBehaviour
 		_damageController.OnHealthChanged += OnHealthChanged;
 	}
 
-	private void OnHealthChanged()
-	{
-		// Set color back if we got healed
-		if (_damageController.HealthAsPercent >= _lowHealthThreshold && _flashCoroutine == null)
-		{
-			_spriteRenderer.color = _startColor;
-		}
-	}
-
 	private void Update()
 	{
 		if (_damageController.HealthAsPercent <= _lowHealthThreshold)
@@ -77,7 +68,8 @@ public class HealthFlasher : MonoBehaviour
 
 	private void OnValidate()
 	{
-		if (_damageController == null) _damageController = GetComponent<DamageController>();
+		if (_damageController == null)
+			_damageController = GetComponent<DamageController>();
 	}
 
 	#endregion
@@ -86,13 +78,23 @@ public class HealthFlasher : MonoBehaviour
 
 	public void FlashOnce(float duration)
 	{
-		if (_flashCoroutine != null) StopCoroutine(_flashCoroutine);
+		if (_flashCoroutine != null)
+			StopCoroutine(_flashCoroutine);
 		_flashCoroutine = StartCoroutine(FlashOnceCoroutine(duration));
 	}
 
 	#endregion
 
 	#region Private Methods
+
+	private void OnHealthChanged()
+	{
+		// Set color back if we got healed
+		if (_damageController.HealthAsPercent >= _lowHealthThreshold && _flashCoroutine == null)
+		{
+			_spriteRenderer.color = _startColor;
+		}
+	}
 
 	private void OnTookDamage(float damage)
 	{

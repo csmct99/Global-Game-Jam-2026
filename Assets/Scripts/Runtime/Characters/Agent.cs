@@ -10,7 +10,6 @@ namespace Runtime
 		#region Protected Fields
 
 		protected bool _isPossessed = false;
-        [SerializeField] private WeaponBase _weapon;
 
 		[Header("Settings")]
 		[Tooltip("Movement speed in units per second.")]
@@ -26,10 +25,17 @@ namespace Runtime
 		[SerializeField]
 		protected Rigidbody2D _rigidbody;
 
+		#endregion
+
+		#region Private Fields
+
+		[SerializeField]
+		private WeaponBase _weapon;
 
 		#endregion
 
 		#region Properties
+
 		public bool IsPossessed => _isPossessed;
 
 		#endregion
@@ -50,16 +56,36 @@ namespace Runtime
 
 			ConfigureRigidbodyForPossession(_rigidbody, true);
 
-            PlayerControls playerControls = gameObject.AddComponent<PlayerControls>();
-            playerControls.Initialize(_moveSpeed, _rotationSpeed, _rigidbody, this);
+			PlayerControls playerControls = gameObject.AddComponent<PlayerControls>();
+			playerControls.Initialize(_moveSpeed, _rotationSpeed, _rigidbody, this);
 
-            GameManager.Instance.possessedAgent = this;
+			GameManager.Instance.possessedAgent = this;
 		}
 
 		public virtual void ConfigureRigidbodyForPossession(Rigidbody2D rb, bool isPossessed)
 		{
 			_rigidbody.isKinematic = !isPossessed;
 			_rigidbody.constraints = isPossessed ? RigidbodyConstraints2D.FreezeRotation : RigidbodyConstraints2D.FreezeAll;
+		}
+
+		public int GetCurAmmo()
+		{
+			if (_weapon != null)
+			{
+				return _weapon.GetCurAmmo();
+			}
+
+			return 0;
+		}
+
+		public int GetMaxAmmo()
+		{
+			if (_weapon != null)
+			{
+				return _weapon.GetMaxAmmo();
+			}
+
+			return 0;
 		}
 
 		public virtual void StopPossess(MaskController mask)
@@ -71,39 +97,18 @@ namespace Runtime
 
 			_isPossessed = false;
 
-            ToggleWeaponFire(false, false); // prevent auto fire after leaving
-            GameManager.Instance.possessedAgent = null;
+			ToggleWeaponFire(false, false); // prevent auto fire after leaving
+			GameManager.Instance.possessedAgent = null;
 		}
 
-
-        public void ToggleWeaponFire(bool fire, bool consumeAmmo)
-        {
-            if(_weapon != null)
-            {
-                _weapon.toggleFire(fire, consumeAmmo);
-            }
-        }
-
-		public int GetCurAmmo()
+		public void ToggleWeaponFire(bool fire, bool consumeAmmo)
 		{
-			if(_weapon != null)
+			if (_weapon != null)
 			{
-				return _weapon.GetCurAmmo();
+				_weapon.toggleFire(fire, consumeAmmo);
 			}
-
-			return 0;
-		}
-
-		public int GetMaxAmmo()
-		{
-			if(_weapon != null)
-			{
-				return _weapon.GetMaxAmmo();
-			}
-
-			return 0;
 		}
 
 		#endregion
-    }
+	}
 }
