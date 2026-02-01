@@ -81,8 +81,10 @@ namespace Runtime
 		private AudioClip[] enemyScreams;
 		[SerializeField]
 		private AudioClip enemyDeath;
-
+		[SerializeField]
 		private AudioClip maskSqueal;
+		[SerializeField]
+		private AudioClip maskLeap;
 		
 		public GameObject audioInstance;
 
@@ -210,6 +212,10 @@ namespace Runtime
 				Debug.Log("Out of throws!");
 				return;
 			}
+			else
+			{
+				SoundFXManager.Instance.PlaySoundFXClip(maskLeap, transform, 0.5f);
+			}
 
 			_currentThrowsRemaining--;
 
@@ -222,7 +228,7 @@ namespace Runtime
 			_currentDeceleration = initialSpeed / _throwDuration;
 
 			_rigidbody2D.linearVelocity = _throwDirection * initialSpeed;
-
+			
 			ExitRecoveryState();
 		}
 
@@ -253,7 +259,7 @@ namespace Runtime
 			float currentShake = Mathf.Pow(progressToDeath, 2) * _maxShakeIntensity;
 
 			_visualsTransform.localPosition = _originalLocalPos + (Vector3) Random.insideUnitCircle * currentShake;
-
+			
 			if (progressToDeath >= 1f)
 			{
 				_visualsTransform.localPosition = _originalLocalPos;
