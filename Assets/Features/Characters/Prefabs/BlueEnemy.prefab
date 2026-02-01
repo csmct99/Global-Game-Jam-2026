@@ -28,14 +28,6 @@ PrefabInstance:
       propertyPath: m_Color.r
       value: 0.35294116
       objectReference: {fileID: 0}
-    - target: {fileID: 5443331014275577840, guid: bed8dd24e5dd60c49b499be4b135d003, type: 3}
-      propertyPath: _frequency
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 5443331014275577840, guid: bed8dd24e5dd60c49b499be4b135d003, type: 3}
-      propertyPath: _takeDamageFlashDuration
-      value: 0.2
-      objectReference: {fileID: 0}
     - target: {fileID: 6440214614281928484, guid: bed8dd24e5dd60c49b499be4b135d003, type: 3}
       propertyPath: m_Color.b
       value: 1

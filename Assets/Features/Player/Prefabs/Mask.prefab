@@ -52,7 +52,7 @@ MonoBehaviour:
   _collider: {fileID: 2451962979203638042}
   _parentConstraint: {fileID: 8690633023818705260}
   _spawnDistanceFromTarget: 2
-  _healthPercentRequiredToPossessWithoutStun: 0.2
+  _healthPercentRequiredToPossessWithoutStun: 0.5
   _possessStunDuration: 1.5
   _healHostAmount: 25
   _maxThrowAttempts: 5

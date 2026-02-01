@@ -184,8 +184,8 @@ MonoBehaviour:
   _spriteRenderer: {fileID: 6440214614281928484}
   _takeDamageFlashDuration: 0.2
   _lowHealthFlashDuration: 0.2
-  _lowHealthThreshold: 0.2
-  _frequency: 16
+  _lowHealthThreshold: 0.5
+  _frequency: 18
   _flashHighColor: {r: 1, g: 1, b: 1, a: 1}
   _flashHurtHighColor: {r: 1, g: 0.24056602, b: 0.24056602, a: 1}
 --- !u!114 &6532656698105077157
