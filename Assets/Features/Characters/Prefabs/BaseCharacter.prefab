@@ -547,7 +547,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3021812174559373454, guid: 27f7f57ead94f491fa1f1d60352bbec2, type: 3}
       propertyPath: mBulletVelocity
-      value: 70
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 4343536227391618198, guid: 27f7f57ead94f491fa1f1d60352bbec2, type: 3}
       propertyPath: m_LocalPosition.x
