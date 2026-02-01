@@ -71,16 +71,16 @@ namespace Runtime
 
 			_isPossessed = false;
 
-            ToggleWeaponFire(false); // prevent auto fire after leaving
+            ToggleWeaponFire(false, false); // prevent auto fire after leaving
             GameManager.Instance.possessedAgent = null;
 		}
 
 
-        public void ToggleWeaponFire(bool fire)
+        public void ToggleWeaponFire(bool fire, bool consumeAmmo)
         {
             if(_weapon != null)
             {
-                _weapon.toggleFire(fire);
+                _weapon.toggleFire(fire, consumeAmmo);
             }
         }
 
