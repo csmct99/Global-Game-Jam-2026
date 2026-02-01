@@ -48,13 +48,15 @@ MonoBehaviour:
   - sceneAsset: {fileID: 102900000, guid: 07153e473dc9e894893e6f0b6145446a, type: 3}
     scenePath: Assets/Features/MainMenu/Scenes/Main Menu.unity
   - sceneAsset: {fileID: 102900000, guid: 3ae58849fcf7bcc499909284eaff165b, type: 3}
-    scenePath: Assets/Features/Level_1/Scenes/Level_1.unity
+    scenePath: Assets/Features/Levels/Level_1.unity
   - sceneAsset: {fileID: 102900000, guid: 0dd9329027f174800a9a2a6b80485cac, type: 3}
-    scenePath: Assets/Features/Level_2/Scenes/Level_2.unity
+    scenePath: Assets/Features/Levels/Level_2.unity
   - sceneAsset: {fileID: 102900000, guid: 33566dfa2e8024d7f98cc3b982f79140, type: 3}
-    scenePath: Assets/Features/Level_3/Scenes/Level_3.unity
+    scenePath: Assets/Features/Levels/Level_3.unity
   - sceneAsset: {fileID: 102900000, guid: 5c8865e164cf46e4e8244dbdec5140f6, type: 3}
-    scenePath: Assets/Features/Level_4/Scenes/Level_4.unity
+    scenePath: Assets/Features/Levels/Level_4.unity
+  - sceneAsset: {fileID: 102900000, guid: 0cc47dbc397ab134cb6d97f650f74c51, type: 3}
+    scenePath: Assets/Features/Levels/Level_5.unity
   - sceneAsset: {fileID: 102900000, guid: 07153e473dc9e894893e6f0b6145446a, type: 3}
     scenePath: Assets/Features/MainMenu/Scenes/Main Menu.unity
   possessedAgent: {fileID: 0}
