@@ -55,7 +55,7 @@ MonoBehaviour:
   _healthPercentRequiredToPossessWithoutStun: 0.2
   _possessStunDuration: 1.5
   _healHostAmount: 25
-  _maxThrowAttempts: 2
+  _maxThrowAttempts: 5
   _throwDistance: 8
   _throwDuration: 0.6
   _maxRecoveryTime: 2

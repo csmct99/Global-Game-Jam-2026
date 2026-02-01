@@ -45,7 +45,7 @@ namespace Runtime
         private void UpdateFiringState()
         {
             // TODO: only fire if they're in front of us and no walls (raycast)
-            ToggleWeaponFire(target != null);
+            ToggleWeaponFire(target != null, false);
         }
 
         void FixedUpdate()

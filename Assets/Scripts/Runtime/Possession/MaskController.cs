@@ -224,13 +224,14 @@ namespace Runtime
 				SoundFXManager.Instance.PlaySoundFXClip(maskLeap, transform, 0.5f);
 			}
 
-			_currentThrowsRemaining--;
 
 			Vector2 mouseWorldPos = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
 			_throwDirection = (mouseWorldPos - (Vector2) transform.position).normalized;
 
-			float initialSpeed = (2 * _throwDistance) / _throwDuration;
+			float initialSpeed = (2 * _throwDistance) / _throwDuration * _currentThrowsRemaining / _maxThrowAttempts;
 
+			_currentThrowsRemaining--;
+			
 			// Deceleration required to reach 0 speed in exactly _throwDuration
 			_currentDeceleration = initialSpeed / _throwDuration;
 
