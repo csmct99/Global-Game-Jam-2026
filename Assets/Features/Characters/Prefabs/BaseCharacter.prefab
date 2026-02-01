@@ -180,6 +180,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::HealthFlasher
   _damageController: {fileID: 2904476168345119264}
   _spriteRenderer: {fileID: 5176316786969771875}
+  _frequency: 10
+  _flashHighColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &3155086485271466828
 GameObject:
   m_ObjectHideFlags: 0
