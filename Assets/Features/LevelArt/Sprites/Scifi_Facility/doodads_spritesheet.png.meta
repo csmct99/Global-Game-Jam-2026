@@ -198,7 +198,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: doodads_spritesheet_2
+      name: blood_1
       rect:
         serializedVersion: 2
         x: 32
@@ -220,7 +220,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: doodads_spritesheet_3
+      name: blood_2
       rect:
         serializedVersion: 2
         x: 48
@@ -242,7 +242,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: doodads_spritesheet_4
+      name: blood_3
       rect:
         serializedVersion: 2
         x: 64
@@ -264,7 +264,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: doodads_spritesheet_5
+      name: blood_4
       rect:
         serializedVersion: 2
         x: 80
@@ -829,6 +829,10 @@ TextureImporter:
       - key: SpriteEditor.SliceSettings
         value: '{"sliceOnImport":false,"gridCellCount":{"x":16.0,"y":3.0},"gridSpriteSize":{"x":16.0,"y":16.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
+      blood_1: 3296453381386205319
+      blood_2: -6379135317629724113
+      blood_3: -234179971012282779
+      blood_4: 7636358036605160343
       doodads_spritesheet_0: 6194058634678716791
       doodads_spritesheet_1: 6737136808450298892
       doodads_spritesheet_10: 7046773497273656926
@@ -841,7 +845,6 @@ TextureImporter:
       doodads_spritesheet_17: -6902308005265615600
       doodads_spritesheet_18: -908165289890818739
       doodads_spritesheet_19: -68549259
-      doodads_spritesheet_2: 3296453381386205319
       doodads_spritesheet_20: -2083536249
       doodads_spritesheet_21: 1380299178
       doodads_spritesheet_22: -1872620615
@@ -852,9 +855,6 @@ TextureImporter:
       doodads_spritesheet_27: -1804070591
       doodads_spritesheet_28: 119041764
       doodads_spritesheet_29: 832691436
-      doodads_spritesheet_3: -6379135317629724113
-      doodads_spritesheet_4: -234179971012282779
-      doodads_spritesheet_5: 7636358036605160343
       doodads_spritesheet_6: -319662518189950655
       doodads_spritesheet_7: -3997545620922221805
       doodads_spritesheet_8: 7350898403491347423
