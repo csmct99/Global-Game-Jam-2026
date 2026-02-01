@@ -14,7 +14,7 @@ public class WeaponBase : MonoBehaviour
     [SerializeField] public int mMaxAmmo;
 
     [SerializeField] private AudioClip gunRevolverFire;
-
+    [SerializeField] private AudioClip gunRevolverEmpty;
     enum FireState
     {
         IDLE,
@@ -75,6 +75,7 @@ public class WeaponBase : MonoBehaviour
             } else
             {
                 //TODO: Noah put empty gun shot sound here
+                SoundFXManager.Instance.PlaySoundFXClip(gunRevolverEmpty, transform, 1f);
             }
 
             mLastFireTime = Time.time;
