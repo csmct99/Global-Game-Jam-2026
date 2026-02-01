@@ -188,6 +188,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 7215661262213080304, guid: c9fe5715e568d5a40b51cb2934e35cac, type: 3}
+      propertyPath: maskLeap
+      value: 
+      objectReference: {fileID: 8300000, guid: af9fa3a0aa90e4ff6b4a9fa2e87ea693, type: 3}
+    - target: {fileID: 7215661262213080304, guid: c9fe5715e568d5a40b51cb2934e35cac, type: 3}
+      propertyPath: maskSqueal
+      value: 
+      objectReference: {fileID: 8300000, guid: ed97b1f2e7b40401099f4a74262882c9, type: 3}
     - target: {fileID: 9004122366926284500, guid: c9fe5715e568d5a40b51cb2934e35cac, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
