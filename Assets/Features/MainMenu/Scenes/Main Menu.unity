@@ -236,6 +236,7 @@ GameObject:
   - component: {fileID: 182276657}
   - component: {fileID: 182276656}
   - component: {fileID: 182276655}
+  - component: {fileID: 182276658}
   m_Layer: 5
   m_Name: Button_Start
   m_TagString: Untagged
@@ -357,6 +358,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 182276653}
   m_CullTransparentMesh: 1
+--- !u!114 &182276658
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 182276653}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eeeccb9605bb44c458210307ca9f26e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
 --- !u!1 &315657672
 GameObject:
   m_ObjectHideFlags: 0
@@ -391,8 +404,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -183.11517, y: -310.7844}
-  m_SizeDelta: {x: -425.357, y: 48.9747}
+  m_AnchoredPosition: {x: -282, y: -469}
+  m_SizeDelta: {x: -669.4614, y: 47.4679}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &315657674
 MonoBehaviour:
@@ -443,7 +456,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 34.25
+  m_fontSize: 41.3
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -507,8 +520,9 @@ GameObject:
   - component: {fileID: 395585530}
   - component: {fileID: 395585532}
   - component: {fileID: 395585531}
+  - component: {fileID: 395585533}
   m_Layer: 5
-  m_Name: Image
+  m_Name: Tents
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -530,8 +544,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -133.67, y: 76}
-  m_SizeDelta: {x: 360.67, y: 360.6699}
+  m_AnchoredPosition: {x: -261.06195, y: 80.06195}
+  m_SizeDelta: {x: 442.7915, y: 442.7914}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &395585531
 MonoBehaviour:
@@ -546,7 +560,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.019607844}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.003921569}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -571,6 +585,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 395585529}
   m_CullTransparentMesh: 1
+--- !u!114 &395585533
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 395585529}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c76de72f1d237f74bb55f9fa71a286f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  target: {fileID: 395585531}
+  minWait: 2
+  maxWait: 6
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -974,7 +1003,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.34958333, y: 0}
   m_AnchorMax: {x: 0.6607709, y: 1}
-  m_AnchoredPosition: {x: 182, y: 232.14}
+  m_AnchoredPosition: {x: 218, y: 131}
   m_SizeDelta: {x: -7.7506, y: -729.7319}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1263989443
@@ -1014,6 +1043,7 @@ GameObject:
   - component: {fileID: 1396225470}
   - component: {fileID: 1396225472}
   - component: {fileID: 1396225471}
+  - component: {fileID: 1396225473}
   m_Layer: 5
   m_Name: Background
   m_TagString: Untagged
@@ -1078,6 +1108,42 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1396225469}
   m_CullTransparentMesh: 1
+--- !u!328 &1396225473
+VideoPlayer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1396225469}
+  m_Enabled: 1
+  m_VideoClip: {fileID: 0}
+  m_TargetCameraAlpha: 1
+  m_TargetCamera3DLayout: 0
+  m_TargetCamera: {fileID: 0}
+  m_TargetTexture: {fileID: 0}
+  m_TimeReference: 0
+  m_TargetMaterialRenderer: {fileID: 0}
+  m_TargetMaterialProperty: <noninit>
+  m_RenderMode: 2
+  m_AspectRatio: 2
+  m_DataSource: 0
+  m_TimeUpdateMode: 2
+  m_PlaybackSpeed: 1
+  m_AudioOutputMode: 2
+  m_TargetAudioSources:
+  - {fileID: 0}
+  m_DirectAudioVolumes:
+  - 1
+  m_Url: 
+  m_EnabledAudioTracks: 01
+  m_DirectAudioMutes: 00
+  m_ControlledAudioTrackCount: 1
+  m_PlayOnAwake: 1
+  m_SkipOnDrop: 1
+  m_Looping: 0
+  m_WaitForFirstFrame: 1
+  m_FrameReadyEventEnabled: 0
+  m_VideoShaders: []
 --- !u!1 &1586751741
 GameObject:
   m_ObjectHideFlags: 0
@@ -1090,6 +1156,7 @@ GameObject:
   - component: {fileID: 1586751745}
   - component: {fileID: 1586751744}
   - component: {fileID: 1586751743}
+  - component: {fileID: 1586751746}
   m_Layer: 5
   m_Name: Button_Quit
   m_TagString: Untagged
@@ -1199,6 +1266,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1586751741}
   m_CullTransparentMesh: 1
+--- !u!114 &1586751746
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1586751741}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eeeccb9605bb44c458210307ca9f26e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HoverPulse
 --- !u!1 &2057927165
 GameObject:
   m_ObjectHideFlags: 0
