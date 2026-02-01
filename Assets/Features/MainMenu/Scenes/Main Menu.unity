@@ -501,9 +501,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Face Hugger
-
-'
+  m_text: Host Required
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 68adf9202f38caa4d9d725de746a915e, type: 2}
   m_sharedMaterial: {fileID: 1637008572365608670, guid: 68adf9202f38caa4d9d725de746a915e, type: 2}
@@ -596,11 +594,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   titleText: {fileID: 0}
-  baseTitle: Face Hugger
-  minWait: 2.5
-  maxWait: 7.5
+  baseTitle: Host Required
+  minWait: 1
+  maxWait: 3.5
   minCharsToGlitch: 1
-  maxCharsToGlitch: 3
+  maxCharsToGlitch: 4
   glitchDurationMin: 0.06
   glitchDurationMax: 0.14
   jitterPosition: 1

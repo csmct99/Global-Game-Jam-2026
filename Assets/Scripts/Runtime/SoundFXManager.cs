@@ -1,7 +1,4 @@
-using Mono.Cecil;
-
 using UnityEngine;
-using UnityEngine.Serialization;
 
 public class SoundFXManager : MonoBehaviour
 {
