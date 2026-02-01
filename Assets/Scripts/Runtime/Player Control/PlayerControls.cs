@@ -109,7 +109,7 @@ public class PlayerControls : MonoBehaviour
 
             if(oldAttackInput != newAttackInput)
             {
-                _agent.ToggleWeaponFire(newAttackInput == 1);
+                _agent.ToggleWeaponFire(newAttackInput == 1, true);
                 _curAttackInput = newAttackInput;
             }
         }

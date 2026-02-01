@@ -25,8 +25,9 @@ public class WeaponBase : MonoBehaviour
     
     protected float mCurTime;
     protected int mAmmoLeft;
+    private bool mConsumeAmmo;
 
-    public void toggleFire(bool firing = false)
+    public void toggleFire(bool firing = false, bool consumeAmmo = false)
     {
         if(firing)
         {
@@ -34,6 +35,8 @@ public class WeaponBase : MonoBehaviour
         } else {
             mCurState = FireState.IDLE;
         }
+
+        mConsumeAmmo = consumeAmmo;
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -49,7 +52,7 @@ public class WeaponBase : MonoBehaviour
         float timeToBullet = 60.0f / mFireRate;
         
         if(mCurTime < timeToBullet) mCurTime += Time.deltaTime;
-        
+
         if(mCurTime > timeToBullet)
         {
             Vector2 firePos = transform.position;
@@ -62,7 +65,10 @@ public class WeaponBase : MonoBehaviour
             Bullet firedBullet = bulletObj.GetComponent<Bullet>();
             
             firedBullet.InitializeBulletData(transform.up, mBulletVelocity, mDamage, transform.root.gameObject);
-            mAmmoLeft -= 1;
+            if(mConsumeAmmo)
+            {
+                mAmmoLeft -= 1;
+            }
             
             mCurTime -= timeToBullet;
         }
