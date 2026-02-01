@@ -44,6 +44,22 @@ public class DamageController : MonoBehaviour
     {
         mInvuln = invuln;
     }
+    
+    public void EnableInvlun()
+    {
+        ToggleInvuln(true);
+    }
+    
+    public void DisableInvlun()
+    {
+        ToggleInvuln(false);
+    }
+    
+    public void MakeInvulnerableForSeconds(float seconds)
+    {
+        ToggleInvuln(true);
+        Invoke(nameof(DisableInvlun), seconds);
+    }
 
     private bool dying = false;
     public void TakeDamage(float damage)

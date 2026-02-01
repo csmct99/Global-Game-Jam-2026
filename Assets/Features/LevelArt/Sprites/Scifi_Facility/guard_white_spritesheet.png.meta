@@ -124,7 +124,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: guard_white_spritesheet_0
+      name: guard_white_down
       rect:
         serializedVersion: 2
         x: 0
@@ -212,7 +212,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: guard_white_spritesheet_4
+      name: guard_white_up
       rect:
         serializedVersion: 2
         x: 0
@@ -300,7 +300,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: guard_white_spritesheet_8
+      name: guard_white_left
       rect:
         serializedVersion: 2
         x: 0
@@ -388,7 +388,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: guard_white_spritesheet_12
+      name: guard_white_right
       rect:
         serializedVersion: 2
         x: 0
@@ -755,11 +755,12 @@ TextureImporter:
       - key: SpriteEditor.SliceSettings
         value: '{"sliceOnImport":false,"gridCellCount":{"x":16.0,"y":3.0},"gridSpriteSize":{"x":16.0,"y":16.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      guard_white_spritesheet_0: -3369824595817784932
+      guard_white_down: -3369824595817784932
+      guard_white_left: 7194768789168179131
+      guard_white_right: 1929172006
       guard_white_spritesheet_1: -3977360555454512724
       guard_white_spritesheet_10: 1440557611
       guard_white_spritesheet_11: -1481734512
-      guard_white_spritesheet_12: 1929172006
       guard_white_spritesheet_13: -249571993
       guard_white_spritesheet_14: -1769515432
       guard_white_spritesheet_15: 816893352
@@ -777,12 +778,11 @@ TextureImporter:
       guard_white_spritesheet_26: 181148346
       guard_white_spritesheet_27: 1939051101
       guard_white_spritesheet_3: -4048499060789611751
-      guard_white_spritesheet_4: 6686282777972168177
       guard_white_spritesheet_5: -4542263677105698239
       guard_white_spritesheet_6: 2127115590536363464
       guard_white_spritesheet_7: -8781851854765634409
-      guard_white_spritesheet_8: 7194768789168179131
       guard_white_spritesheet_9: -377175528
+      guard_white_up: 6686282777972168177
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
