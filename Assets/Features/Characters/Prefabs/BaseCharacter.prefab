@@ -376,7 +376,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3021812174559373454, guid: 27f7f57ead94f491fa1f1d60352bbec2, type: 3}
       propertyPath: mMaxAmmo
-      value: 8
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 3021812174559373454, guid: 27f7f57ead94f491fa1f1d60352bbec2, type: 3}
       propertyPath: mFireRate
@@ -386,6 +386,10 @@ PrefabInstance:
       propertyPath: gunRevolverFire
       value: 
       objectReference: {fileID: 8300000, guid: 57235a30092bb4867a91e65cf70a0723, type: 3}
+    - target: {fileID: 3021812174559373454, guid: 27f7f57ead94f491fa1f1d60352bbec2, type: 3}
+      propertyPath: mBulletVelocity
+      value: 200
+      objectReference: {fileID: 0}
     - target: {fileID: 4343536227391618198, guid: 27f7f57ead94f491fa1f1d60352bbec2, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.393
