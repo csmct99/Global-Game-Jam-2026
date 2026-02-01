@@ -42,7 +42,6 @@ public class DamageController : MonoBehaviour
 
     public void ToggleInvuln(bool invuln)
     {
-        Debug.Log($"INVLUN: {invuln}");
         mInvuln = invuln;
     }
     
