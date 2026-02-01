@@ -12,6 +12,7 @@ public class DamageController : MonoBehaviour
     private float mCurHealth;
 
     public Action<float> OnTookDamage;
+    public Action OnHealthChanged;
     
     private bool mInvuln;
 
@@ -72,6 +73,7 @@ public class DamageController : MonoBehaviour
         }
         
         if(damage > 0) OnTookDamage?.Invoke(damage);
+        OnHealthChanged?.Invoke();
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created

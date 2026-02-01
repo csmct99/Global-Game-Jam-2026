@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2613130271601596249}
-  - component: {fileID: 3450606770974714959}
+  - component: {fileID: 7309505088253983474}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -26,13 +26,13 @@ Transform:
   m_GameObject: {fileID: 2878874896793699195}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.29384, y: 0.09695, z: 0}
+  m_LocalPosition: {x: 10.87, y: 0.09695, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3450606770974714959
+--- !u!114 &7309505088253983474
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -44,11 +44,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15956a909c6a342d785d55fbf1f2f2e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
-  _scenes:
-  - Main Menu
-  - Level_1
-  - Level_2
-  - Level_3
-  - Level_4
-  - Main Menu
+  _sceneLoadOrder:
+  - sceneAsset: {fileID: 102900000, guid: 07153e473dc9e894893e6f0b6145446a, type: 3}
+    scenePath: Assets/Features/MainMenu/Scenes/Main Menu.unity
+  - sceneAsset: {fileID: 102900000, guid: 3ae58849fcf7bcc499909284eaff165b, type: 3}
+    scenePath: Assets/Features/Level_1/Scenes/Level_1.unity
+  - sceneAsset: {fileID: 102900000, guid: 0dd9329027f174800a9a2a6b80485cac, type: 3}
+    scenePath: Assets/Features/Level_2/Scenes/Level_2.unity
+  - sceneAsset: {fileID: 102900000, guid: 33566dfa2e8024d7f98cc3b982f79140, type: 3}
+    scenePath: Assets/Features/Level_3/Scenes/Level_3.unity
+  - sceneAsset: {fileID: 102900000, guid: 5c8865e164cf46e4e8244dbdec5140f6, type: 3}
+    scenePath: Assets/Features/Level_4/Scenes/Level_4.unity
+  - sceneAsset: {fileID: 102900000, guid: 07153e473dc9e894893e6f0b6145446a, type: 3}
+    scenePath: Assets/Features/MainMenu/Scenes/Main Menu.unity
   possessedAgent: {fileID: 0}
