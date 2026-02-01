@@ -59,6 +59,9 @@ public class WeaponBase : MonoBehaviour
             }
 
             GameObject bulletObj = Instantiate(mBulletPrefab, firePos, transform.rotation);
+            //Play gunshot sfx
+            SoundFXManager.Instance.PlaySoundFXClip(gunRevolverFire, transform, 0.1f);
+            
             Bullet firedBullet = bulletObj.GetComponent<Bullet>();
             
             firedBullet.InitializeBulletData(transform.up, mBulletVelocity, mDamage, transform.root.gameObject);
@@ -73,6 +76,7 @@ public class WeaponBase : MonoBehaviour
     {
         if(mCurState == FireState.FIRING && mAmmoLeft > 0)
         {
+            
             TryFire();
         }
     }
