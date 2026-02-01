@@ -104,6 +104,8 @@ namespace Runtime
 
 		private bool _isInRecovery = false;
 
+		private DamageController _damageController;
+
 		#endregion
 
 		#region MonoBehaviour Methods
@@ -152,10 +154,10 @@ namespace Runtime
 
 			if (TryGetPossessable(other.gameObject, out IPossessable possessable))
 			{
-				DamageController damageController = other.gameObject.GetComponent<DamageController>();
+				_damageController = other.gameObject.GetComponent<DamageController>();
 
 				// Check their health level to detetrmine if we need to stun the player
-				bool shouldStun = damageController.HealthAsPercent > _healthPercentRequiredToPossessWithoutStun;
+				bool shouldStun = _damageController.HealthAsPercent > _healthPercentRequiredToPossessWithoutStun;
 				Possess(possessable, shouldStun);
 			}
 		}
@@ -196,6 +198,7 @@ namespace Runtime
 			_inputLockTimestamp = Time.time;
 
 			_onInputsLocked?.Invoke();
+			if(_damageController != null) _damageController.ToggleInvuln(true);
 		}
 
 		private void UnlockInputs()
@@ -206,6 +209,7 @@ namespace Runtime
 			_isInputLocked = false;
 
 			_onInputsUnlocked?.Invoke();
+			if(_damageController != null) _damageController.ToggleInvuln(false);
 		}
 
 		private void ThrowMaskAtCursor()
@@ -301,8 +305,8 @@ namespace Runtime
 			target.BeginPossess(this);
 			_currentPossessedTarget = target;
 
-			DamageController targetDC = _currentPossessedTarget.GetGameObject().GetComponent<DamageController>();
-			targetDC.TakeDamage(-_healHostAmount);
+			_damageController = _currentPossessedTarget.GetGameObject().GetComponent<DamageController>();
+			if(_damageController != null) _damageController.TakeDamage(-_healHostAmount);
 
 			// Disable mask collider and physics while possessed
 			SetCollisionState(false);

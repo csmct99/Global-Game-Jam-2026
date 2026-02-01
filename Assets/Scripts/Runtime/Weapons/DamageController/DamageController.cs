@@ -11,6 +11,8 @@ public class DamageController : MonoBehaviour
     [SerializeField] private AudioClip deathSound;
     private float mCurHealth;
 
+    private bool mInvuln;
+
     public float CurrentHealth
     {
         get
@@ -31,14 +33,22 @@ public class DamageController : MonoBehaviour
     
     public void Kill()
     {
+        ToggleInvuln(false);
         TakeDamage(mMaxHealth);
+    }
+
+    public void ToggleInvuln(bool invuln)
+    {
+        mInvuln = invuln;
     }
 
     public void TakeDamage(float damage)
     {
+        if(mInvuln) return;
+
         mCurHealth = mCurHealth - damage;
 
-        if (CurrentHmCurHealthealth <= 0)
+        if (mCurHealth <= 0)
         {
             MaskController mask = gameObject.GetComponent<MaskController>();
             Agent agent = gameObject.GetComponent<Agent>();
