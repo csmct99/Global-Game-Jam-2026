@@ -54,7 +54,8 @@ MonoBehaviour:
   _spawnDistanceFromTarget: 2
   _healthPercentRequiredToPossessWithoutStun: 0.2
   _possessStunDuration: 1.5
-  _maxThrowAttempts: 2
+  _healHostAmount: 25
+  _maxThrowAttempts: 5
   _throwDistance: 8
   _throwDuration: 0.6
   _maxRecoveryTime: 2
@@ -132,6 +133,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: f992b708bb2f34d188d0ef828bb323f7, type: 3}
   - {fileID: 8300000, guid: ce63e10756b4c40568137f390d638d5d, type: 3}
   enemyDeath: {fileID: 8300000, guid: 60d2703e6d3db4d4db127a03fe35fbf4, type: 3}
+  maskSqueal: {fileID: 8300000, guid: ed97b1f2e7b40401099f4a74262882c9, type: 3}
+  maskLeap: {fileID: 8300000, guid: af9fa3a0aa90e4ff6b4a9fa2e87ea693, type: 3}
   audioInstance: {fileID: 0}
   _visualsTransform: {fileID: 8378144966088712118}
 --- !u!50 &1544434164589130616

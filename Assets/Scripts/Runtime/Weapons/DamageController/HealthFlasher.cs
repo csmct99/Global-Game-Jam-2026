@@ -16,6 +16,11 @@ public class HealthFlasher : MonoBehaviour
 	private Color _startColor;
 	private Color _modifiedColor;
 
+	[SerializeField]
+	private float _frequency = 1f;
+	[SerializeField]
+	private Color _flashHighColor = Color.white;
+
 	#endregion
 
 	#region MonoBehaviour Methods
@@ -24,11 +29,13 @@ public class HealthFlasher : MonoBehaviour
 	{
 		_startColor = _spriteRenderer.color;
 		_modifiedColor = new Color(_startColor.r, _startColor.g, _startColor.b, _startColor.a);
+
+		_flashHighColor = Color.Lerp(_startColor, _flashHighColor, 0.5f);
 	}
 
 	private void Update()
 	{
-		_spriteRenderer.color = DesaturateColor(_startColor, _damageController.HealthAsPercent);
+		_spriteRenderer.color = CalculateFlashColor(_startColor,  1 - _damageController.HealthAsPercent);
 	}
 
 	private void OnValidate()
@@ -37,18 +44,11 @@ public class HealthFlasher : MonoBehaviour
 			_damageController = GetComponent<DamageController>();
 	}
 
-	#endregion
-
-	#region Private Methods
-
-	private Color DesaturateColor(Color color, float saturation)
+	private Color CalculateFlashColor(Color startColor, float deathPercent)
 	{
-		_modifiedColor.r = color.r * saturation;
-		_modifiedColor.g = color.g * saturation;
-		_modifiedColor.b = color.b * saturation;
-
-		return _modifiedColor;
+		return Color.Lerp(startColor, _flashHighColor,  Mathf.Sin(Time.time * _frequency * deathPercent));
 	}
 
 	#endregion
+
 }
