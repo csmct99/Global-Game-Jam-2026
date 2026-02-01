@@ -36,6 +36,18 @@ PrefabInstance:
       propertyPath: _takeDamageFlashDuration
       value: 0.2
       objectReference: {fileID: 0}
+    - target: {fileID: 6440214614281928484, guid: bed8dd24e5dd60c49b499be4b135d003, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6440214614281928484, guid: bed8dd24e5dd60c49b499be4b135d003, type: 3}
+      propertyPath: m_Color.g
+      value: 0.7199786
+      objectReference: {fileID: 0}
+    - target: {fileID: 6440214614281928484, guid: bed8dd24e5dd60c49b499be4b135d003, type: 3}
+      propertyPath: m_Color.r
+      value: 0.3443396
+      objectReference: {fileID: 0}
     - target: {fileID: 7437325486156936494, guid: bed8dd24e5dd60c49b499be4b135d003, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.77265465
