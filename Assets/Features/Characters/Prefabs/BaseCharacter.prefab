@@ -162,7 +162,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee8fa7f52b347419aa0dcb5da2ea791e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DamageController
-  mMaxHealth: 50
+  mMaxHealth: 20
   hurtSound: {fileID: 8300000, guid: 5d1a9fcfa92d74b5b85f55fac5e5e3a0, type: 3}
   deathSound: {fileID: 8300000, guid: 60d2703e6d3db4d4db127a03fe35fbf4, type: 3}
 --- !u!1 &3155086485271466828
@@ -358,6 +358,14 @@ PrefabInstance:
     - target: {fileID: 1655522961370302748, guid: 27f7f57ead94f491fa1f1d60352bbec2, type: 3}
       propertyPath: m_Name
       value: Weapon
+      objectReference: {fileID: 0}
+    - target: {fileID: 3021812174559373454, guid: 27f7f57ead94f491fa1f1d60352bbec2, type: 3}
+      propertyPath: mMaxAmmo
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3021812174559373454, guid: 27f7f57ead94f491fa1f1d60352bbec2, type: 3}
+      propertyPath: mFireRate
+      value: 90
       objectReference: {fileID: 0}
     - target: {fileID: 3021812174559373454, guid: 27f7f57ead94f491fa1f1d60352bbec2, type: 3}
       propertyPath: gunRevolverFire
