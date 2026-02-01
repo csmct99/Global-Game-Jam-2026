@@ -84,8 +84,10 @@ namespace Runtime
 		private AudioClip[] enemyScreams;
 		[SerializeField]
 		private AudioClip enemyDeath;
-
+		[SerializeField]
 		private AudioClip maskSqueal;
+		[SerializeField]
+		private AudioClip maskLeap;
 		
 		public GameObject audioInstance;
 
@@ -101,6 +103,8 @@ namespace Runtime
 		private Transform _visualsTransform;
 
 		private bool _isInRecovery = false;
+
+		private DamageController _damageController;
 
 		#endregion
 
@@ -150,10 +154,10 @@ namespace Runtime
 
 			if (TryGetPossessable(other.gameObject, out IPossessable possessable))
 			{
-				DamageController damageController = other.gameObject.GetComponent<DamageController>();
+				_damageController = other.gameObject.GetComponent<DamageController>();
 
 				// Check their health level to detetrmine if we need to stun the player
-				bool shouldStun = damageController.HealthAsPercent > _healthPercentRequiredToPossessWithoutStun;
+				bool shouldStun = _damageController.HealthAsPercent > _healthPercentRequiredToPossessWithoutStun;
 				Possess(possessable, shouldStun);
 			}
 		}
@@ -194,6 +198,7 @@ namespace Runtime
 			_inputLockTimestamp = Time.time;
 
 			_onInputsLocked?.Invoke();
+			if(_damageController != null) _damageController.ToggleInvuln(true);
 		}
 
 		private void UnlockInputs()
@@ -204,6 +209,7 @@ namespace Runtime
 			_isInputLocked = false;
 
 			_onInputsUnlocked?.Invoke();
+			if(_damageController != null) _damageController.ToggleInvuln(false);
 		}
 
 		private void ThrowMaskAtCursor()
@@ -212,6 +218,10 @@ namespace Runtime
 			{
 				Debug.Log("Out of throws!");
 				return;
+			}
+			else
+			{
+				SoundFXManager.Instance.PlaySoundFXClip(maskLeap, transform, 0.5f);
 			}
 
 			_currentThrowsRemaining--;
@@ -225,7 +235,7 @@ namespace Runtime
 			_currentDeceleration = initialSpeed / _throwDuration;
 
 			_rigidbody2D.linearVelocity = _throwDirection * initialSpeed;
-
+			
 			ExitRecoveryState();
 		}
 
@@ -256,7 +266,7 @@ namespace Runtime
 			float currentShake = Mathf.Pow(progressToDeath, 2) * _maxShakeIntensity;
 
 			_visualsTransform.localPosition = _originalLocalPos + (Vector3) Random.insideUnitCircle * currentShake;
-
+			
 			if (progressToDeath >= 1f)
 			{
 				_visualsTransform.localPosition = _originalLocalPos;
@@ -295,8 +305,8 @@ namespace Runtime
 			target.BeginPossess(this);
 			_currentPossessedTarget = target;
 
-			DamageController targetDC = _currentPossessedTarget.GetGameObject().GetComponent<DamageController>();
-			targetDC.TakeDamage(-_healHostAmount);
+			_damageController = _currentPossessedTarget.GetGameObject().GetComponent<DamageController>();
+			if(_damageController != null) _damageController.TakeDamage(-_healHostAmount);
 
 			// Disable mask collider and physics while possessed
 			SetCollisionState(false);
