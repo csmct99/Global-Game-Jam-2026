@@ -106,7 +106,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WeaponBase
   mDamage: 5
-  mBulletVelocity: 100
+  mBulletVelocity: 50
   mFireRate: 90
   mBulletPrefab: {fileID: 5751854089035933097, guid: 869e19db802d24fb09c5aa0530653d44, type: 3}
   mFirePosition: {fileID: 3362299290924643097}
