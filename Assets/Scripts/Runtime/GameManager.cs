@@ -37,7 +37,7 @@ public class GameManager : MonoBehaviour
 
 		if(enemyCount <= 0)
 		{
-			Invoke(nameof(LoadNextLevel), 1.5f);
+			Invoke(nameof(LoadNextLevel), 0.75f); // Short delay to start level
 		}
 	}
 
