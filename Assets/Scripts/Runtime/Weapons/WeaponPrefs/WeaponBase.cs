@@ -24,6 +24,8 @@ public class WeaponBase : MonoBehaviour
     private FireState mCurState;
     
     protected float mCurTime;
+    protected float mLastFireTime = float.MinValue ;
+    
     protected int mAmmoLeft;
     protected bool mConsumeAmmo;
 
@@ -49,11 +51,7 @@ public class WeaponBase : MonoBehaviour
 
     protected virtual void TryFire()
     {
-        float timeToBullet = 60.0f / mFireRate;
-        
-        if(mCurTime < timeToBullet) mCurTime += Time.deltaTime;
-
-        if(mCurTime > timeToBullet)
+        if(Time.time - mLastFireTime > 60/mFireRate)
         {
             Vector2 firePos = transform.position;
             if(mFirePosition != null)
@@ -72,8 +70,8 @@ public class WeaponBase : MonoBehaviour
             {
                 mAmmoLeft -= 1;
             }
-            
-            mCurTime -= timeToBullet;
+
+            mLastFireTime = Time.time;
         }
     }
 
