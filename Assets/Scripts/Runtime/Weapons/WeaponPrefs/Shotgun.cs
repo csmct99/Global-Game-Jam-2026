@@ -37,8 +37,12 @@ public class Shotgun : WeaponBase
                 Debug.Log(initDir + " " + mBulletVelocity);
             }
 
-            mAmmoLeft -= 1;
-            
+
+			if (mConsumeAmmo)
+			{
+				mAmmoLeft -= 1;
+			}
+			
             mCurTime -= timeToBullet;
         }
     }

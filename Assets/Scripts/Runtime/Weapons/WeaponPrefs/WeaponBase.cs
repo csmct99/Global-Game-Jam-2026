@@ -25,7 +25,7 @@ public class WeaponBase : MonoBehaviour
     
     protected float mCurTime;
     protected int mAmmoLeft;
-    private bool mConsumeAmmo;
+    protected bool mConsumeAmmo;
 
     public void toggleFire(bool firing = false, bool consumeAmmo = false)
     {
