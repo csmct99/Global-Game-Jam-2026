@@ -84,7 +84,7 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.5188679, g: 0.4867964, b: 0.007342457, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -111,6 +111,7 @@ MonoBehaviour:
   mBulletPrefab: {fileID: 5751854089035933097, guid: 869e19db802d24fb09c5aa0530653d44, type: 3}
   mFirePosition: {fileID: 3362299290924643097}
   mMaxAmmo: 60
+  gunRevolverFire: {fileID: 0}
 --- !u!1 &3362299290924643097
 GameObject:
   m_ObjectHideFlags: 0
