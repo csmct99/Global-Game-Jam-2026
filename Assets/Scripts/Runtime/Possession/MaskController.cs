@@ -76,6 +76,9 @@ namespace Runtime
 		
 		[SerializeField]
 		private float _damageEffectFadeFactor = 0.5f;
+		
+		[SerializeField]
+		private float _damageEffectFadeInSpeedInSeconds = 0.25f;
 
 		[Header("Recovery")]
 		[SerializeField]
@@ -161,14 +164,13 @@ namespace Runtime
 
 			CheckForStoppedThrow();
 
-			if (_currentPossessedTarget != null && _damageController != null)
+			if (_currentPossessedTarget != null && _damageController != null && Math.Abs(_damageIndicatorVolume.weight - (1-_damageController.HealthAsPercent)) > 0.01f)
 			{
-				_damageIndicatorVolume.weight = 1 - _damageController.HealthAsPercent;
+				_damageIndicatorVolume.weight = Mathf.MoveTowards(_damageIndicatorVolume.weight, 1-_damageController.HealthAsPercent, Time.deltaTime / _damageEffectFadeInSpeedInSeconds);
 			}
 			else
 			{
-				// Lerp to 0 weight when not possessing
-				if (_damageIndicatorVolume.weight != 0)
+				if (_damageIndicatorVolume != null && _damageIndicatorVolume.weight != 0)
 				{
 					_damageIndicatorVolume.weight = Mathf.MoveTowards(_damageIndicatorVolume.weight, 0, Time.deltaTime / _damageEffectFadeFactor);
 				}
