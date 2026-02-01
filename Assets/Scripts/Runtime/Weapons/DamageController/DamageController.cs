@@ -36,9 +36,9 @@ public class DamageController : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
-        mCurHealth = CurrentHealth - damage;
+        mCurHealth = mCurHealth - damage;
 
-        if (CurrentHealth <= 0)
+        if (CurrentHmCurHealthealth <= 0)
         {
             MaskController mask = gameObject.GetComponent<MaskController>();
             Agent agent = gameObject.GetComponent<Agent>();
@@ -52,6 +52,10 @@ public class DamageController : MonoBehaviour
             }
 
             Destroy(gameObject); // remove this when death state is setup
+        }
+        else if(mCurHealth > mMaxHealth)
+        {
+            mCurHealth = mMaxHealth;
         }
     }
 

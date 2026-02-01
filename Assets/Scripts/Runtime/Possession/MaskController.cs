@@ -40,6 +40,9 @@ namespace Runtime
 		[SerializeField]
 		private float _possessStunDuration = 1.5f;
 
+		[SerializeField]
+		private float _healHostAmount = 25.0f;
+
 		[Header("Throws")]
 		[SerializeField]
 		private int _maxThrowAttempts = 2;
@@ -297,6 +300,9 @@ namespace Runtime
 
 			target.BeginPossess(this);
 			_currentPossessedTarget = target;
+
+			DamageController targetDC = _currentPossessedTarget.GetGameObject().GetComponent<DamageController>();
+			targetDC.TakeDamage(-_healHostAmount);
 
 			// Disable mask collider and physics while possessed
 			SetCollisionState(false);
