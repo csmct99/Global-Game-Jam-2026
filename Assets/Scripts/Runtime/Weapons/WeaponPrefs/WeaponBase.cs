@@ -29,6 +29,17 @@ public class WeaponBase : MonoBehaviour
     protected int mAmmoLeft;
     protected bool mConsumeAmmo;
 
+
+    public int GetMaxAmmo()
+    {
+        return mMaxAmmo;
+    }
+
+    public int GetCurAmmo()
+    {
+        return mAmmoLeft;
+    }
+
     public void toggleFire(bool firing = false, bool consumeAmmo = false)
     {
         if(firing)
@@ -71,6 +82,7 @@ public class WeaponBase : MonoBehaviour
                 if(mConsumeAmmo)
                 {
                     mAmmoLeft -= 1;
+					GameManager.Instance.UpdateAmmoState(mAmmoLeft, mMaxAmmo);
                 }
             } else
             {
