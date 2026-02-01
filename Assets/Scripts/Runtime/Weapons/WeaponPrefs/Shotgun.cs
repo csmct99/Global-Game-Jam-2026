@@ -42,6 +42,7 @@ public class Shotgun : WeaponBase
                 if (mConsumeAmmo)
                 {
                     mAmmoLeft -= 1;
+					GameManager.Instance.UpdateAmmoState(mAmmoLeft, mMaxAmmo);
                 }
 
             } else

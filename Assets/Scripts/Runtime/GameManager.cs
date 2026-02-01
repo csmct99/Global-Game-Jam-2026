@@ -4,6 +4,7 @@ using Runtime;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Tymski;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 { 
@@ -24,6 +25,7 @@ public class GameManager : MonoBehaviour
 	}
 
 	[SerializeField] private List<SceneReference> _sceneLoadOrder;
+	[SerializeField] private TMP_Text _ammoTextObj;
 
 	private int _curLevel = 0;
 
@@ -96,4 +98,22 @@ public class GameManager : MonoBehaviour
 			}
 		}
 	}
+
+    public void UpdateAmmoState(int curAmmo, int maxAmmo)
+    {
+        if(_ammoTextObj != null)
+        {
+            _ammoTextObj.text = curAmmo + " / " + maxAmmo;
+            _ammoTextObj.enabled = true;
+        }
+    }
+
+    public void DisableAmmoUI()
+    {
+        
+        if(_ammoTextObj != null)
+        {
+            _ammoTextObj.text = "";
+        }
+    }
 }

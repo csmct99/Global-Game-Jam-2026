@@ -108,6 +108,7 @@ MonoBehaviour:
   _throwDuration: 0.6
   _damageIndicatorVolume: {fileID: 8600737152942384561}
   _damageEffectFadeFactor: 1.5
+  _damageEffectFadeInSpeedInSeconds: 0.25
   _maxRecoveryTime: 2
   _onPossessionBegin:
     m_PersistentCalls:
@@ -374,6 +375,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8560698485154466026}
   - component: {fileID: 2100295634809072057}
+  - component: {fileID: 5871596152402986383}
   m_Layer: 6
   m_Name: Body
   m_TagString: Untagged
@@ -391,7 +393,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.0404305, y: 1.0404305, z: 1.0404305}
+  m_LocalScale: {x: 4.0768137, y: 4.0768137, z: 4.0768137}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8378144966088712118}
@@ -445,16 +447,28 @@ SpriteRenderer:
   m_SortingLayer: 1
   m_SortingOrder: 2
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 21300000, guid: f082e69f825d0aa44b687e592731c0a8, type: 3}
-  m_Color: {r: 0.38439435, g: 0.8867924, b: 0.3722855, a: 0.67058825}
+  m_Sprite: {fileID: 21300000, guid: 09779b698a023a64cbf0a4f5a454c046, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.32, y: 0.32}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!114 &5871596152402986383
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6892149293523028093}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1fdcb99157ee4372a19fcd468b5ee0f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Runtime.Rendering.DontRotateWithParent
 --- !u!1 &7594282193015034236
 GameObject:
   m_ObjectHideFlags: 0
