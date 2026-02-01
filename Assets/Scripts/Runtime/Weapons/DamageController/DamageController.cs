@@ -11,6 +11,8 @@ public class DamageController : MonoBehaviour
     [SerializeField] private AudioClip deathSound;
     private float mCurHealth;
 
+    public Action<float> OnTookDamage;
+    
     private bool mInvuln;
 
     public float CurrentHealth
@@ -68,6 +70,8 @@ public class DamageController : MonoBehaviour
         {
             mCurHealth = mMaxHealth;
         }
+        
+        if(damage > 0) OnTookDamage?.Invoke(damage);
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created

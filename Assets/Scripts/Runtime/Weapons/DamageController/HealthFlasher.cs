@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 
 using UnityEngine;
 
@@ -14,12 +15,27 @@ public class HealthFlasher : MonoBehaviour
 	private SpriteRenderer _spriteRenderer;
 
 	private Color _startColor;
-	private Color _modifiedColor;
+
+	[SerializeField]
+	private float _takeDamageFlashDuration = 0.5f;
+
+	[SerializeField]
+	private float _lowHealthFlashDuration = 0.2f;
+
+	[SerializeField]
+	[Range(0f, 1f)]
+	private float _lowHealthThreshold = 0.2f;
 
 	[SerializeField]
 	private float _frequency = 1f;
+
 	[SerializeField]
 	private Color _flashHighColor = Color.white;
+
+	[SerializeField]
+	private Color _flashHurtHighColor = Color.red;
+
+	private Coroutine _flashCoroutine;
 
 	#endregion
 
@@ -28,14 +44,25 @@ public class HealthFlasher : MonoBehaviour
 	private void Awake()
 	{
 		_startColor = _spriteRenderer.color;
-		_modifiedColor = new Color(_startColor.r, _startColor.g, _startColor.b, _startColor.a);
-
 		_flashHighColor = Color.Lerp(_startColor, _flashHighColor, 0.5f);
+
+		_damageController.OnTookDamage += OnTookDamage;
 	}
 
 	private void Update()
 	{
-		_spriteRenderer.color = CalculateFlashColor(_startColor,  1 - _damageController.HealthAsPercent);
+		if (_damageController.HealthAsPercent < _lowHealthThreshold)
+		{
+			_spriteRenderer.color = CalculateFlashColor(_startColor);
+		}
+	}
+
+	private void OnDestroy()
+	{
+		if (_damageController != null)
+		{
+			_damageController.OnTookDamage -= OnTookDamage;
+		}
 	}
 
 	private void OnValidate()
@@ -44,11 +71,45 @@ public class HealthFlasher : MonoBehaviour
 			_damageController = GetComponent<DamageController>();
 	}
 
-	private Color CalculateFlashColor(Color startColor, float deathPercent)
+	#endregion
+
+	#region Public Methods
+
+	public void FlashOnce(float duration)
 	{
-		return Color.Lerp(startColor, _flashHighColor,  Mathf.Sin(Time.time * _frequency * deathPercent));
+		if (_flashCoroutine != null)
+			StopCoroutine(_flashCoroutine);
+		_flashCoroutine = StartCoroutine(FlashOnceCoroutine(duration));
 	}
 
 	#endregion
 
+	#region Private Methods
+
+	private void OnTookDamage(float damage)
+	{
+		FlashOnce(_takeDamageFlashDuration);
+	}
+
+	private Color CalculateFlashColor(Color startColor)
+	{
+		return Color.Lerp(startColor, _flashHighColor, Mathf.Sin(Time.time * _frequency));
+	}
+
+	private IEnumerator FlashOnceCoroutine(float duration)
+	{
+		float elapsed = 0f;
+		while (elapsed < duration)
+		{
+			float t = Mathf.Sin((elapsed / duration) * Mathf.PI);
+			_spriteRenderer.color = Color.Lerp(_startColor, _flashHurtHighColor, t);
+			elapsed += Time.deltaTime;
+			yield return null;
+		}
+
+		_spriteRenderer.color = _startColor;
+		_flashCoroutine = null;
+	}
+
+	#endregion
 }

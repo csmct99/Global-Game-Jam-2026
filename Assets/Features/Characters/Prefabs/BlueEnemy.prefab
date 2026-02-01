@@ -24,13 +24,21 @@ PrefabInstance:
       propertyPath: m_Color.r
       value: 0.35294116
       objectReference: {fileID: 0}
+    - target: {fileID: 5443331014275577840, guid: bed8dd24e5dd60c49b499be4b135d003, type: 3}
+      propertyPath: _frequency
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 5443331014275577840, guid: bed8dd24e5dd60c49b499be4b135d003, type: 3}
+      propertyPath: _takeDamageFlashDuration
+      value: 0.2
+      objectReference: {fileID: 0}
     - target: {fileID: 7437325486156936494, guid: bed8dd24e5dd60c49b499be4b135d003, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 0.77265465
       objectReference: {fileID: 0}
     - target: {fileID: 7437325486156936494, guid: bed8dd24e5dd60c49b499be4b135d003, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -3.942184
       objectReference: {fileID: 0}
     - target: {fileID: 7437325486156936494, guid: bed8dd24e5dd60c49b499be4b135d003, type: 3}
       propertyPath: m_LocalPosition.z
