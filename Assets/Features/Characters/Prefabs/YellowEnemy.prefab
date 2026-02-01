@@ -8,6 +8,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2904476168345119264, guid: bed8dd24e5dd60c49b499be4b135d003, type: 3}
+      propertyPath: mMaxHealth
+      value: 35
+      objectReference: {fileID: 0}
     - target: {fileID: 3136971939668613960, guid: bed8dd24e5dd60c49b499be4b135d003, type: 3}
       propertyPath: m_Name
       value: YellowEnemy
@@ -90,6 +94,26 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 7518148969958003346}
     m_Modifications:
+    - target: {fileID: -7616276365169951559, guid: e7d85eaa1940344228201e83db279bc7, type: 3}
+      propertyPath: mDamage
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: -7616276365169951559, guid: e7d85eaa1940344228201e83db279bc7, type: 3}
+      propertyPath: mMaxAmmo
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: -7616276365169951559, guid: e7d85eaa1940344228201e83db279bc7, type: 3}
+      propertyPath: mFireRate
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: -7616276365169951559, guid: e7d85eaa1940344228201e83db279bc7, type: 3}
+      propertyPath: mSpreadAngle
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: -7616276365169951559, guid: e7d85eaa1940344228201e83db279bc7, type: 3}
+      propertyPath: mBulletVelocity
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 1655522961370302748, guid: e7d85eaa1940344228201e83db279bc7, type: 3}
       propertyPath: m_Name
       value: Shotgun

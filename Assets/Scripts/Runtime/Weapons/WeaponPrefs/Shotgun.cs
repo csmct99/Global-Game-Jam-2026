@@ -33,8 +33,12 @@ public class Shotgun : WeaponBase
                 firedBullet.InitializeBulletData(initDir, mBulletVelocity, mDamage, transform.root.gameObject);
             }
 
-            mAmmoLeft -= 1;
-            
+
+			if (mConsumeAmmo)
+			{
+				mAmmoLeft -= 1;
+			}
+			
             mCurTime -= timeToBullet;
         }
     }
