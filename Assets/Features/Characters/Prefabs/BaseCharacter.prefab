@@ -46,6 +46,7 @@ GameObject:
   - component: {fileID: 9165417224841664499}
   - component: {fileID: 409152957408428060}
   - component: {fileID: 2904476168345119264}
+  - component: {fileID: 5443331014275577840}
   m_Layer: 7
   m_Name: BaseCharacter
   m_TagString: Untagged
@@ -165,6 +166,20 @@ MonoBehaviour:
   mMaxHealth: 50
   hurtSound: {fileID: 8300000, guid: 5d1a9fcfa92d74b5b85f55fac5e5e3a0, type: 3}
   deathSound: {fileID: 8300000, guid: 60d2703e6d3db4d4db127a03fe35fbf4, type: 3}
+--- !u!114 &5443331014275577840
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3136971939668613960}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a0a6716cda54258ad6b1fbf302eba9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HealthFlasher
+  _damageController: {fileID: 2904476168345119264}
+  _spriteRenderer: {fileID: 5176316786969771875}
 --- !u!1 &3155086485271466828
 GameObject:
   m_ObjectHideFlags: 0
